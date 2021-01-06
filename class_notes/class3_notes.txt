@@ -1,0 +1,149 @@
+alist = [1,44.2, 'abc', None, True, "A long sentence"]
+some_words = "Tres are nice, they are tall"
+alist[::]
+	[1, 44.2, 'abc', None, True, 'A long sentence']
+alist[::-1]
+	['A long sentence', True, None, 'abc', 44.2, 1]
+alist.reverse()
+alist.sort()
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  TypeError: '<' not supported between instances of 'bool' and 'str'
+alist.reverse()
+reversed(alist)
+	<list_reverseiterator object at 0x10b6c29a0>
+list(reversed(alist))
+	['A long sentence', True, None, 'abc', 44.2, 1]
+some_words = "Trees are nice, they are tall"
+alist.append("new item")
+alist.insert(3, 1000000)
+alist.extend([44, "001", False])
+alist.append([44, "001", False])
+alist.pop(4)
+alist.remove('NEW item')
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  ValueError: list.remove(x): x not in list
+alist.remove('new  item')
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  ValueError: list.remove(x): x not in list
+alist.remove('new item')
+alist.remove(44)
+alist.remove("44.2")
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  ValueError: list.remove(x): x not in list
+alist.insert(3, "12")
+alist.insert(7, 35)
+alist
+	[1, 44.2, 'abc', '12', 1000000, True, 'A long sentence', 35, '001', False, [44, '001', False]]
+alist.remove('12')
+alist.pop(6)
+	35
+alist.insert(7, 35)
+j = alist.pop(7)
+alist[2:4]
+	['abc', 1000000]
+alist[2:4] = "BOO"
+alist[2:4] = 12
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  TypeError: can only assign an iterable
+alist[2:4] = [12, 44]
+alist[2:4] = "BOO*"
+alist.count('O')
+	3
+alist.pop(2)
+	'B'
+alist.pop(2)
+	'O'
+alist.pop(2)
+	'O'
+alist.pop(2)
+	'*'
+alist.pop(2)
+	'O'
+alist[2:4]
+	[True, 'A long sentence']
+alist[2:4] = "FROG"
+alist[2:6] = ['abc', 'James', False, 'Something and else']
+alist[2:6] = ['x','y','z']
+alist[2:6] = ['x','y','z']
+adict = {}
+adict['age'] = 23
+adict = {'name': "James", 'weight': 185, "married": False}
+adict['married']
+	False
+adict['name']
+	'James'
+adict = {'name': "James","weight": 185, 'married': False}
+adict['weight']
+	185
+adict['height'] = 6.0
+adict.keys()
+	dict_keys(['name', 'weight', 'married', 'height'])
+adict.get('salary')
+
+adict['salary']
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  KeyError: 'salary'
+adict.get('salary', False)
+	False
+adict.get('salary', 0)
+	0
+adict
+	{'name': 'James', 'weight': 185, 'married': False, 'height': 6.0}
+adict.values()
+	dict_values(['James', 185, False, 6.0])
+adict.items()
+	dict_items([('name', 'James'), ('weight', 185), ('married', False), ('height', 6.0)])
+atuple = ('James', 185, False, 6.0)
+atuple[::]
+	('James', 185, False, 6.0)
+atuple[:]
+	('James', 185, False, 6.0)
+list(atuple[::])
+	['James', 185, False, 6.0]
+adict.setdefault('address', str(j) + some_words)
+	'35Trees are nice, they are tall'
+adict.popitem()
+	('address', '35Trees are nice, they are tall')
+atuple
+	('James', 185, False, 6.0)
+atuple[2] = 4
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  TypeError: 'tuple' object does not support item assignment
+x = atuple[::]
+x = list(atuple[::])
+x[2] = 4
+range(10)
+range(0, 10)
+range(0,10)
+range(0, 10)
+a = range(0,10)
+a
+	range(0, 10)
+list(range(10))
+	[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+list(range(3,33))
+	[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+list(range(3,33,11))
+	[3, 14, 25]
+list(range(1,50,2))
+	[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]
+list(range(0,50,2))
+	[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48]
+alist = list("abcdefghijklmn")
+'a'*3
+'aaa'
+list(range(4.6))
+	Traceback (most recent call last):
+	  File "<input>", line 1, in <module>
+	  TypeError: 'float' object cannot be interpreted as an integer
+int(5/2)
+	2
+int(2.9)
+	2
