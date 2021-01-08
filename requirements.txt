@@ -1,0 +1,11 @@
+Faker==5.4.0
+
+# installation of faker
+python-dateutil==2.8.1
+#Installation of selenium
+selenium==3.141.0
+six==1.15.0
+
+# adding random comments to submitt a commit
+text-unidecode==1.3
+urllib3==1.26.2
