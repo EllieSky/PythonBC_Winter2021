@@ -3,11 +3,24 @@ import unittest
 
 from selenium import webdriver
 
+from tests import CHROME_PATH
+
 
 class BasicLogin(unittest.TestCase):
-    def test_valid_login(self):
+
+    def setUp(self) -> None:
         # browser session
-        browser = webdriver.Chrome(executable_path='/Users/ellie/Automation/PythonBC_Winter2021/chromedriver')
+        browser = webdriver.Chrome(executable_path=CHROME_PATH)
+        # Take local browser and store it into SELF
+        self.browser = browser
+
+    def tearDown(self) -> None:
+        self.browser.quit()
+
+    def test_valid_login(self):
+        # Take browser out of SELF into local browser variable
+        browser = self.browser
+
         # open the URL
         browser.get('http://hrm-online.portnov.com/')
         # enter username
@@ -22,6 +35,10 @@ class BasicLogin(unittest.TestCase):
         welcome_message = browser.find_element_by_id('welcome').text
 
         self.assertEqual('Welcome Admin', welcome_message)
+
+    def test_empty_password(self):
+        # Put your code here
+        pass
 
 
 if __name__ == '__main__':
