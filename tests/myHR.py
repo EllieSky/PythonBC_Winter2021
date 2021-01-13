@@ -1,4 +1,5 @@
 import unittest
+import time
 
 from selenium import webdriver
 
@@ -27,8 +28,7 @@ class BasicLogin(unittest.TestCase):
 
         self.assertEqual('Welcome Admin', welcome_message)
 
-
-        #self.assertEqual(True, False)
+        time.sleep(10)
 
 
 if __name__ == '__main__':
