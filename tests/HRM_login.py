@@ -74,7 +74,18 @@ class BasicLogin(unittest.TestCase):
         browser = self.browser
         browser.get('http://hrm-online.portnov.com/')
         browser.find_element_by_id('txtUsername').send_keys('admin')
-        browser.find_element_by_id('txtPassword').send_keys('qwerty')
+        browser.find_element_by_id('txtPassword').send_keys('test')
+        browser.find_element_by_id('btnLogin').click()
+        time.sleep(1)
+        self.assertTrue(browser.current_url.endswith('/auth/validateCredentials'))
+        error_message = browser.find_element_by_id('spanMessage').text
+        self.assertEqual('Invalid credentials', error_message)
+
+    def test_invalid_username_valid_password(self):
+        browser = self.browser
+        browser.get('http://hrm-online.portnov.com/')
+        browser.find_element_by_id('txtUsername').send_keys('test')
+        browser.find_element_by_id('txtPassword').send_keys('password')
         browser.find_element_by_id('btnLogin').click()
         time.sleep(1)
         self.assertTrue(browser.current_url.endswith('/auth/validateCredentials'))
