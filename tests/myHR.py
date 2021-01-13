@@ -13,6 +13,12 @@ class BasicLogin(unittest.TestCase):
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
         self.browser = browser
 
+    def test_empty_password(self):
+        # put your code here
+        # pass
+        # psss
+        # assert
+
     def test_valid_login(self):
         # Take local browser and store it into SELF
         browser = self.browser
