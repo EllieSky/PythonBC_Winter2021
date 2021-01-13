@@ -80,7 +80,6 @@ class BasicLogin(unittest.TestCase):
         self.assertTrue(browser.current_url.endswith('/auth/validateCredentials'))
         error_message = browser.find_element_by_id('spanMessage').text
         self.assertEqual('Invalid credentials', error_message)
-        self.assertTrue(browser.find_element_by_id('spanMessage').is_displayed())
 
     def test_invalid_user_name_invalid_password(self):
         browser = self.browser
