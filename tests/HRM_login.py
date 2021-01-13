@@ -23,11 +23,7 @@ class BasicLogin(unittest.TestCase):
         self.assertTrue(browser.current_url.endswith('/pim/viewEmployeeList'))
         welcome_message = browser.find_element_by_id('welcome').text
         self.assertEqual('Welcome Admin', welcome_message)
-        if browser.find_element_by_id('welcome').is_displayed():
-            print(True)
-        else:
-            print(False)
-
+        self.assertTrue(browser.find_element_by_id('welcome').is_displayed())
 
 
 if __name__ == '__main__':
