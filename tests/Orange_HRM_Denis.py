@@ -12,6 +12,7 @@ class OrangeHRMLogin(unittest.TestCase):
         driver = webdriver.Chrome()
         driver.maximize_window()
         self.driver = driver
+        driver.get("http://hrm-online.portnov.com/")
 
     def tearDown(self) -> None:
         self.driver.quit()
@@ -20,7 +21,6 @@ class OrangeHRMLogin(unittest.TestCase):
     def test_orange_login(self):
         # Take browser out of SELF into local variable
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         driver.find_element_by_id("txtUsername").send_keys("admin")
         driver.find_element_by_id("txtPassword").send_keys("password")
         driver.find_element_by_name("Submit").click()
@@ -36,7 +36,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_one(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_name("Submit").click()
         error_one = driver.find_element_by_id("spanMessage")
@@ -46,7 +45,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_two(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_id("txtUsername").send_keys("admin")
         driver.find_element_by_name("Submit").click()
@@ -57,7 +55,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_three(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_id("txtPassword").send_keys("password")
         driver.find_element_by_name("Submit").click()
@@ -68,7 +65,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_four(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_id("txtUsername").send_keys("admin1")
         driver.find_element_by_id("txtPassword").send_keys("password")
@@ -81,7 +77,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_five(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_id("txtUsername").send_keys("ADMIN")
         driver.find_element_by_id("txtPassword").send_keys("PASSWORD")
@@ -94,7 +89,6 @@ class OrangeHRMLogin(unittest.TestCase):
 
     def test_negative_scenario_six(self):
         driver = self.driver
-        driver.get("http://hrm-online.portnov.com/")
         time.sleep(1)
         driver.find_element_by_id("txtUsername").send_keys("&^*%$#%")
         driver.find_element_by_id("txtPassword").send_keys("password")
