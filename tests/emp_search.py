@@ -58,8 +58,14 @@ class EmpSearch(unittest.TestCase):
         self.assertTrue(len(list_of_web_elements_jtitles)==1)
     def test_send_esc_key(self):
         self.login('admin','password')
+        time.sleep(1)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys('David')
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
+        self.browser.find_element_by_id('searchBtn').click()
+        list_of_web_elements_jtitles = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[3]')
+        for item in list_of_web_elements_jtitles:
+            self.assertEqual('David', item.text)
+            print("text david" + item.text)
         time.sleep(4)
 
 
