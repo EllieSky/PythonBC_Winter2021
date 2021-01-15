@@ -18,6 +18,14 @@ class OrangeHRMLogin(unittest.TestCase):
         self.driver.quit()
 
 
+    def login(self, username, password):
+        # enter username
+        self.driver.find_element_by_id('txtUsername').send_keys(username)
+        # enter password
+        self.driver.find_element_by_id('txtPassword').send_keys(password)
+        # click Login button
+        self.driver.find_element_by_id('btnLogin').click()
+
     def test_orange_login(self):
         # Take browser out of SELF into local variable
         driver = self.driver
