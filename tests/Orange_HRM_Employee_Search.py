@@ -39,8 +39,8 @@ class OrangeHRMEmpSearch(unittest.TestCase):
         #Select(driver.find_element_by_css_selector("#resultTable > tbody > tr:nth-child(1) > td:nth-child(5)")).deselect_by_visible_text("QA Manager")
         job_title = driver.find_element_by_css_selector("#resultTable > tbody > tr:nth-child(1) > td:nth-child(5)").text
         self.assertEqual("QA Manager", job_title)
-        list_of_webelamets_from_job_title = driver.find_elements_by_css_selector("#resultTable > tbody > tr:nth-child(1) > td:nth-child(5)")
-        for item in list_of_webelamets_from_job_title:
+        list_of_web_elamets_from_job_title = driver.find_elements_by_css_selector("#resultTable > tbody > tr:nth-child(1) > td:nth-child(5)")
+        for item in list_of_web_elamets_from_job_title:
             self.assertEqual("QA Manager", item.text)
 
 
