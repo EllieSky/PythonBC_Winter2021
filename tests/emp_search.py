@@ -2,8 +2,11 @@ import time
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from tests import CHROME_PATH
 
@@ -48,9 +51,12 @@ class EmpSearch(unittest.TestCase):
             self.assertEqual('SDET', item.text)
     def test_search_by_employee_id(self):
         self.login('admin', 'password')
+        time.sleep(1)
+    #     wait = WebDriverWait(self.browser, 10)
+    #     element = wait.until(EC.visibility_of_element_located((By.ID, 'empsearch_id')))
         self.browser.find_element_by_id('empsearch_id').send_keys('635919')
         self.browser.find_element_by_id('searchBtn').click()
-        actual_search_result = self.browser.find_element_by_link_text('635919').text
+        actual_search_result =  self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[2]').text
         print('result' +  actual_search_result)
         self.assertTrue('635919' == actual_search_result)
         list_of_web_elements_jtitles = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')
@@ -59,14 +65,18 @@ class EmpSearch(unittest.TestCase):
     def test_send_esc_key(self):
         self.login('admin','password')
         time.sleep(1)
+
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys('David')
+        is_element_present = len(self.browser.find_elements_by_class_name('ac_over'))
+        self.assertEqual(1,  len(self.browser.find_elements_by_class_name('ac_over')))
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
+        self.assertEqual(0, len(self.browser.find_elements_by_class_name('ac_over')))
         self.browser.find_element_by_id('searchBtn').click()
         list_of_web_elements_jtitles = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[3]')
         for item in list_of_web_elements_jtitles:
             self.assertEqual('David', item.text)
             print("text david" + item.text)
-        time.sleep(4)
+
 
 
 if __name__ == '__main__':
