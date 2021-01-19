@@ -13,25 +13,43 @@ class BasicLogin(unittest.TestCase):
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
         # Take  local browser and store it into SELF
         self.browser = browser
+        browser.get("http://hrm-online.portnov.com/")
 
     def tearDown(self) -> None:
         self.browser.quit()
+
+    def login(self, username, password):
+        # enter username
+        self.browser.find_element_by_id("txtUsername").send_keys(username) if username else None
+
+        if password:
+            # enter password
+            self.browser.find_element_by_id("txtPassword").send_keys(password)
+
+        # example of conditional assignment
+        # gender = 'boy'
+        # greeting = "Ms." if gender == 'Female' else "Mr."
+
+        # click Login button
+        self.browser.find_element_by_id("btnLogin").click()
 
     def test_valid_login(self):
         # Take browser out of SELF into local browser variable
         browser = self.browser
 
         # open the URL
-        browser.get("http://hrm-online.portnov.com/")
+        # browser.get("http://hrm-online.portnov.com/")
 
         # enter username
-        browser.find_element_by_id("txtUsername").send_keys("admin")
+        # browser.find_element_by_id("txtUsername").send_keys("admin")
 
         # enter password
-        browser.find_element_by_id("txtPassword").send_keys("password")
+        # browser.find_element_by_id("txtPassword").send_keys("password")
 
         # click Login button
-        browser.find_element_by_id("btnLogin").click()
+        # browser.find_element_by_id("btnLogin").click()
+
+        self.login("admin", "password")
 
         # assert success
         time.sleep(1)
@@ -47,44 +65,44 @@ class BasicLogin(unittest.TestCase):
 
     def test_empty_username(self):
         browser = self.browser
-        browser.get("http://hrm-online.portnov.com/")
-        browser.find_element_by_id("btnLogin").click()
+        # browser.get("http://hrm-online.portnov.com/")
+        # browser.find_element_by_id("btnLogin").click()
+        self.login(None, None)
         error_message = browser.find_element_by_id("spanMessage").text
         self.assertEqual("Username cannot be empty", error_message)
         print("User can not login with empty username")
 
     def test_empty_password(self):
         browser = self.browser
-        browser.get("http://hrm-online.portnov.com/")
-        browser.find_element_by_id("txtUsername").send_keys("admin")
-        browser.find_element_by_id("btnLogin").click()
+        # browser.get("http://hrm-online.portnov.com/")
+        # browser.find_element_by_id("txtUsername").send_keys("admin")
+        # browser.find_element_by_id("btnLogin").click()
+        self.login("admin", None)
         error_message = browser.find_element_by_id("spanMessage").text
         self.assertEqual("Password cannot be empty", error_message)
         print("User can not login with empty password")
 
     def test_wrong_password(self):
         browser = self.browser
-        browser.get("http://hrm-online.portnov.com/")
-        browser.find_element_by_id("txtUsername").send_keys("admin")
-        browser.find_element_by_id("txtPassword").send_keys("passwordd")
-        browser.find_element_by_id("btnLogin").click()
+        # browser.get("http://hrm-online.portnov.com/")
+        # browser.find_element_by_id("txtUsername").send_keys("admin")
+        # browser.find_element_by_id("txtPassword").send_keys("passwordd")
+        # browser.find_element_by_id("btnLogin").click()
+        self.login("admin", "passwordd")
         error_message = browser.find_element_by_id("spanMessage").text
         self.assertEqual("Invalid credentials", error_message)
         print("User can not login with wrong password")
 
-
     def test_wrong_username(self):
         browser = self.browser
-        browser.get("http://hrm-online.portnov.com/")
-        browser.find_element_by_id("txtUsername").send_keys("aaddmmin")
-        browser.find_element_by_id("txtPassword").send_keys("password")
-        browser.find_element_by_id("btnLogin").click()
+        # browser.get("http://hrm-online.portnov.com/")
+        # browser.find_element_by_id("txtUsername").send_keys("aaddmmin")
+        # browser.find_element_by_id("txtPassword").send_keys("password")
+        # browser.find_element_by_id("btnLogin").click()
+        self.login("addmmmin", "password")
         error_message = browser.find_element_by_id("spanMessage").text
         self.assertEqual("Invalid credentials", error_message)
         print("User can not login with wrong username")
-
-
-
 
 
 if __name__ == '__main__':
