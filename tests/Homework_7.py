@@ -81,8 +81,8 @@ class Homework_7(unittest.TestCase):
 
         count = 0
         for i in range(len(list_of_web_elements_employee_names)):
-            if list_of_web_elements_employee_last_names[i].text.find('amb') != -1 or \
-               list_of_web_elements_employee_names[i].text.find('amb') != -1:
+            if list_of_web_elements_employee_last_names[i].text.lower().find('amb') != -1 or \
+               list_of_web_elements_employee_names[i].text.lower().find('amb') != -1:
                 count = count+1
 
         self.assertEqual(count, len(list_of_web_elements_employee_names), "Not all entries contain amb")
