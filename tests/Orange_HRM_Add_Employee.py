@@ -8,7 +8,7 @@ from selenium.webdriver.support.select import Select # works on the tags that ha
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class OrangeHRMEmpSearch(unittest.TestCase):
+class OrangeHRMEmpAdd(unittest.TestCase):
 
     def setUp(self) -> None:
         driver = webdriver.Chrome()
@@ -30,7 +30,7 @@ class OrangeHRMEmpSearch(unittest.TestCase):
         # click Login button
         self.driver.find_element_by_id('btnLogin').click()
 
-    def test_emp_search_by_QAManager(self):
+    def test_emp_add_user(self):
         driver = self.driver
         desired_url = 'http://hrm-online.portnov.com/symfony/web/index.php/pim/addEmployee'
         wait = WebDriverWait(driver, 15)
