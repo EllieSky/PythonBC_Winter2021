@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC, expected_conditions
 
 from tests import CHROME_PATH
 
@@ -83,7 +83,19 @@ class EmpSearch(unittest.TestCase):
 
     def test_add_employee(self):
         self.login('admin', 'password')
-        wait.until(EC.url_changes('http://hrm-online.portnov.com/symfony/web/index.php/auth/login'))
+        WebDriverWait(self.browser, 5).until(
+            expected_conditions.presence_of_element_located(
+                [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
+        # WebDriverWait(self.browser, 5).until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName']))
+        # WebDriverWait(self.browser, 5).until(EC.presence_of_element_located([By.ID,"empsearch_employee_name_empName"]))
+        # WebDriverWait(self.browser,5).until(expected_conditions.presence_of_element_located([By.ID,"btnAdd"]))
+
+        self.browser.find_element_by_name('btnAdd').click()
+
+        WebDriverWait(self.browser,5).until(EC.presence_of_element_located([By.ID,"firstName"]))
+
+        self.browser.find_element_by_id('firstName').send_keys("James")
+
 
 if __name__ == '__main__':
     unittest.main()
