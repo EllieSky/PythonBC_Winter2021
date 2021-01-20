@@ -75,8 +75,7 @@ class Login(unittest.TestCase):
 
         list_of_web_elements_jids = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[2]')
 
-        for item in list_of_web_elements_jids:
-            self.assertEqual(len(list_of_web_elements_jids), 1)
+        self.assertEqual(len(list_of_web_elements_jids), 1)
 
     def test_search_by_name(self):
         self.login('admin', 'password')
@@ -116,6 +115,7 @@ class Login(unittest.TestCase):
 
         # for item in list_of_web_elements_name:
         #    self.assertEqual('David', item.text)
+
 
 
 

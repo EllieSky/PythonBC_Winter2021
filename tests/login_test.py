@@ -7,95 +7,69 @@ from tests import CHROME_PATH
 
 
 class BasicLogin(unittest.TestCase):
-
     def setUp(self) -> None:
         # browser session
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        # Take locale browser and store into SELF
+        # Take local browser and store it into SELF
         self.browser = browser
+        # open the URL
+        browser.get('http://hrm-online.portnov.com/')
 
     def tearDown(self) -> None:
         self.browser.quit()
 
+    def login(self, username, password):
+        # enter username
+        self.browser.find_element_by_id('txtUsername').send_keys(username) if username else None
+
+        if password:
+            # enter password
+            self.browser.find_element_by_id('txtPassword').send_keys(password)
+
+        # example of conditional assignment
+        # gender = 'Female'
+        # greeting = "Ms." if gender == 'Female' else "Mr."
+
+        # click Login button
+        self.browser.find_element_by_id('btnLogin').click()
+
+
     def test_valid_login(self):
         # Take browser out of SELF into local browser variable
         browser = self.browser
-        # browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        # self.browser = browser
-
-        browser.get('http://hrm-online.portnov.com/')
-        browser.find_element_by_id('txtUsername').send_keys('admin')
-        browser.find_element_by_id('txtPassword').send_keys('password')
-        browser.find_element_by_id('btnLogin').click()
-
+        self.login('admin', 'password')
         time.sleep(1)
-
-
-
-        #expected_url = 'http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList'
-        #actual_url = browser.current_url
-        #self.assertEqual(expected_url, actual_url)
-
+        # assert success
         self.assertTrue(browser.current_url.endswith('/pim/viewEmployeeList'))
         welcome_message = browser.find_element_by_id('welcome').text
 
         self.assertEqual('Welcome Admin', welcome_message)
 
-    def test_empty_username(self):
-        browser = self.browser
-
-        browser.get('http://hrm-online.portnov.com/')
-        browser.find_element_by_id('txtPassword').send_keys('password')
-        browser.find_element_by_id('btnLogin').click()
-
-        time.sleep(1)
-
-        username_message = browser.find_element_by_id('spanMessage').text
-
-        self.assertEqual('Username cannot be empty', username_message)
-
     def test_empty_password(self):
+        # Take browser out of SELF into local browser variable
         browser = self.browser
 
-        browser.get('http://hrm-online.portnov.com/')
-        browser.find_element_by_id('txtUsername').send_keys('admin')
-        browser.find_element_by_id('btnLogin').click()
+        self.login('admin', None)
+        error_message = browser.find_element_by_id('spanMessage').text
+        self.assertEqual('http://hrm-online.portnov.com/symfony/web/index.php/auth/login', browser.current_url)
+        self.assertEqual('Password cannot be empty', error_message)
 
-        time.sleep(1)
-
-        password_message = browser.find_element_by_id('spanMessage').text
-
-        self.assertEqual('Password cannot be empty', password_message)
-
-    def test_wrong_password(self):
+    def test_empty_username(self):
+        # Take browser out of SELF into local browser variable
         browser = self.browser
 
-        browser.get('http://hrm-online.portnov.com/')
-        browser.find_element_by_id('txtUsername').send_keys('admin')
-        browser.find_element_by_id('txtPassword').send_keys('password1')
-        browser.find_element_by_id('btnLogin').click()
+        self.login(None, None)
+        error_message = browser.find_element_by_id('spanMessage').text
+        self.assertEqual('http://hrm-online.portnov.com/symfony/web/index.php/auth/login', browser.current_url)
+        self.assertEqual('Username cannot be empty', error_message)
 
-        time.sleep(1)
-
-        passw_wrong_message = browser.find_element_by_id('spanMessage').text
-
-        self.assertEqual('Invalid credentials', passw_wrong_message)
-
-    def test_wrong_username(self):
+    def test_invalid_credentials_login(self):
+        # Take browser out of SELF into local browser variable
         browser = self.browser
-
-        browser.get('http://hrm-online.portnov.com/')
-        browser.find_element_by_id('txtUsername').send_keys('123errtt')
-        browser.find_element_by_id('txtPassword').send_keys('password')
-        browser.find_element_by_id('btnLogin').click()
-
-        time.sleep(1)
-
-        passw_wrong_uname = browser.find_element_by_id('spanMessage').text
-
-        self.assertEqual('Invalid credentials', passw_wrong_uname)
-
-
+        self.login('adminnn', 'passwordd')
+        error_message = browser.find_element_by_id('spanMessage').text
+        self.assertTrue(browser.current_url.endswith('/auth/validateCredentials'))
+        self.assertEqual('Invalid credentials', error_message)
 
 if __name__ == '__main__':
     unittest.main()
