@@ -2,8 +2,11 @@ import time
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
 
 from tests import CHROME_PATH
 
@@ -37,7 +40,11 @@ class EmpSearch(unittest.TestCase):
         Select(self.browser.find_element_by_id('empsearch_job_title')).select_by_visible_text('SDET')
         self.browser.find_element_by_id('searchBtn').click()
 
-        time.sleep(2)
+        WebDriverWait(self.browser, 5).until(
+            expected_conditions.presence_of_element_located(
+                [By.CSS_SELECTOR, '#empsearch_job_title > option[selected][value="42"]']))
+
+        # time.sleep(2)
 
         result = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]').text
         self.assertEqual('SDET', result)
