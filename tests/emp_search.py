@@ -51,9 +51,13 @@ class EmpSearch(unittest.TestCase):
             self.assertEqual('SDET', item.text)
     def test_search_by_employee_id(self):
         self.login('admin', 'password')
-        time.sleep(1)
-    #     wait = WebDriverWait(self.browser, 10)
-    #     element = wait.until(EC.visibility_of_element_located((By.ID, 'empsearch_id')))
+     #   time.sleep(1)
+        # wait = WebDriverWait(self.browser, 10)
+        # element = wait.until(EC.visibility_of_element_located((By.ID, 'empsearch_id')))
+        #inputField =
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.url_changes("http://hrm-online.portnov.com/symfony/web/index.php/auth/login"))
+      #  wait.until(EC.visibility_of(self.browser.find_element_by_id("empsearch_id")))
         self.browser.find_element_by_id('empsearch_id').send_keys('635919')
         self.browser.find_element_by_id('searchBtn').click()
         actual_search_result =  self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[2]').text
@@ -77,7 +81,9 @@ class EmpSearch(unittest.TestCase):
             self.assertEqual('David', item.text)
             print("text david" + item.text)
 
-
+    def test_add_employee(self):
+        self.login('admin', 'password')
+        wait.until(EC.url_changes('http://hrm-online.portnov.com/symfony/web/index.php/auth/login'))
 
 if __name__ == '__main__':
     unittest.main()
