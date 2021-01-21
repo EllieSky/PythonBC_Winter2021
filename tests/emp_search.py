@@ -1,7 +1,10 @@
 import time
 import unittest
+from random import random
+import string,random
 
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
@@ -82,19 +85,40 @@ class EmpSearch(unittest.TestCase):
             print("text david" + item.text)
 
     def test_add_employee(self):
-        self.login('admin', 'password')
+        # letters = string.ascii_lowercase
+        # print(''.join(random.choice(letters) for i in range(10)))
+        # username = ''.join(random.choice(letters) for i in range(10))
+        self.login("admin", 'password')
         WebDriverWait(self.browser, 5).until(
             expected_conditions.presence_of_element_located(
                 [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
-        # WebDriverWait(self.browser, 5).until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName']))
-        # WebDriverWait(self.browser, 5).until(EC.presence_of_element_located([By.ID,"empsearch_employee_name_empName"]))
-        # WebDriverWait(self.browser,5).until(expected_conditions.presence_of_element_located([By.ID,"btnAdd"]))
 
         self.browser.find_element_by_name('btnAdd').click()
 
         WebDriverWait(self.browser,5).until(EC.presence_of_element_located([By.ID,"firstName"]))
 
         self.browser.find_element_by_id('firstName').send_keys("James")
+        self.browser.find_element_by_id('lastName').send_keys("Bond")
+        employee_id = self.browser.find_element_by_id("employeeId").get_attribute("value")
+        print("employe id" + employee_id)
+        self.browser.find_element_by_id('chkLogin').click()
+
+        new_user_name = "James" + "Bond" + employee_id
+        print("new user name " + new_user_name)
+        self.browser.find_element_by_id('user_name').send_keys(new_user_name)
+        self.browser.find_element_by_id('user_password').send_keys('password')
+        self.browser.find_element_by_id('re_password').send_keys('password')
+        self.browser.find_element_by_id('btnSave').click()
+
+        self.browser.find_element_by_id('welcome').click()
+        WebDriverWait(self.browser,5).until(EC.presence_of_element_located([By.LINK_TEXT,"Logout"]))
+        self.browser.find_element_by_link_text("Logout").click()
+        self.login(new_user_name,"password")
+        # WebDriverWait(self.browser,5).until(EC.url_changes("http://hrm-online.portnov.com/symfony/web/index.php/auth/login"))
+        WebDriverWait(self.browser,5).until(EC.url_contains('viewMyDetails'))
+
+        print("last line")
+
 
 
 if __name__ == '__main__':
