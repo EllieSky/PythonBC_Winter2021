@@ -46,7 +46,7 @@ class Homework_7(unittest.TestCase):
         result = self.browser.find_element_by_xpath('//tbody/tr[1]/td[2]').text
         self.assertEqual('441915', result)
 
-        list_of_web_elements_IDs = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')
+        list_of_web_elements_IDs = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[2]')
         qty = len(list_of_web_elements_IDs)
         print("Qty of records found: " + str(qty))
         self.assertEqual(1, qty)

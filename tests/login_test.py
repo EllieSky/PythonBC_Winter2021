@@ -2,6 +2,9 @@ import time
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 from tests import CHROME_PATH
 
@@ -48,11 +51,19 @@ class BasicLogin(unittest.TestCase):
 
         # click Login button
         # browser.find_element_by_id("btnLogin").click()
+        url = browser.current_url
 
         self.login("admin", "password")
 
         # assert success
         time.sleep(1)
+
+        wait = WebDriverWait(browser, 15)
+
+        wait.until(expected_conditions.url_contains("/pim/viewEmployeeList"))
+        wait.until(expected_conditions.url_changes(url))
+        wait.until(expected_conditions.presence_of_element_located([By.ID, "welcome"]))
+
         expected_url = "http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList"
         actual_url = browser.current_url
         self.assertEqual(expected_url, actual_url)
