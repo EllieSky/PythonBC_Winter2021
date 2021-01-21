@@ -1,0 +1,22 @@
+Homework
+
+Use the emp_search.py script we created in class, to add 2 additional tests.
+
+Part 1:
+
+Search for an employee by ID
+Check that the correct record returns
+Ensure only 1 record returns
+
+Part 2:
+Search for an employee by name: David
+Use google to figure out how to send the ESCAPE key after typing 'David' to close the autocomplete widget that opens up.
+Check that all results match
+
+OR
+
+Part 2B (advanced challenge):
+Search for an employee by name: amb
+Check that EITHER first name or last name column of the results matches
+Hint: you will need to use 'or' as part of you validation expression
+

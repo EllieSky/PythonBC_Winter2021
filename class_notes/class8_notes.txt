@@ -1,0 +1,73 @@
+<div id='ab'>
+	<tag_name attr1='val1' class='abc' font='James'>
+	<tag_name attr1='val2' class='def' font='Emily'>
+<div id='a1'>
+	<tag_name attr1='val2' font='James' class='abc' >
+		<tag_name attr1='val2' font='James' class='def' >
+	<tag_name attr1='val1' class='abc' font='James'>
+
+tag_name.abc[attr1='val2']
+tag_name[attr1='val2'][font='James']
+.def[font='James']
+
+#a1 tag_name[attr1='val1']
+
+
+//*[@id="resultTable"]/tbody/tr'
+
+#resultTable>tbody>tr
+
+
+
+
+
+
+
+<div id='ab'>
+	<tag_name attr1='val1' class='abc' font='James'>
+	<tag_name attr1='val2' class='def' font='Emily'>
+<div id='a1'>
+	<tag_name attr1='val2' font='James' class='abc' >
+	<tag_name attr1='val2' font='James' class='def' >
+	<tag_name attr1='val1' class='abc' font='James'>
+
+
+//*[@id='a1']/tag_name[@attr1='val1' and @font='James']
+//tag_name[@attr1='val1' and @font='James'][2]
+(//tag_name[@attr1='val1'][@font='James'])[2]
+
+
+
+
+
+<select name="empsearch[job_title]" id="empsearch_job_title">
+	<option value="0">All</option>
+	<option value="38">QA Manager</option>
+	<option value="42" selected="selected">SDET</option>
+	<option value="45">Software Architect</option>
+	<option value="43">Software Developer</option>
+	<option value="41">Tester</option>
+</select>
+
+
+//select[@id="empsearch_job_title"]/option[@selected="selected"][@value="42"]
+//select[@id="empsearch_job_title"]/option[@selected="selected" and @value="42"]
+
+//option[@selected="selected" and @value="42"]
+
+#empsearch_job_title > option[selected][value="42"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

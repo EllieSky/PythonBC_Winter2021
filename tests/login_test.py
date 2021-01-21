@@ -2,6 +2,9 @@ import time
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 from tests import CHROME_PATH
 
@@ -37,8 +40,12 @@ class BasicLogin(unittest.TestCase):
     def test_valid_login(self):
         # Take browser out of SELF into local browser variable
         browser = self.browser
+        url = browser.current_url
         self.login('admin', 'password')
-        time.sleep(1)
+        wait = WebDriverWait(browser, 15)
+
+        wait.until(expected_conditions.url_changes(url))
+        wait.until(expected_conditions.presence_of_element_located([By.ID, "welcome"]))
         # assert success
         self.assertTrue(browser.current_url.endswith('/pim/viewEmployeeList'))
         welcome_message = browser.find_element_by_id('welcome').text
