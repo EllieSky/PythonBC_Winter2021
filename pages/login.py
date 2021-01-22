@@ -1,11 +1,14 @@
 class LoginPage:
-    def __init__(self, browser):
-        self.browser = browser
+    def __init__(self, driver):
+        self.driver = driver
 
-    def login(self, username='admin', password='password'):
-        self.browser.find_element_by_id('txtUsername').send_keys(username) if username else None
+    def login(self, username="admin", password="password"):
+        # enter username
+        self.driver.find_element_by_id('txtUsername').send_keys(username) if username else None
 
         if password:
-            self.browser.find_element_by_id('txtPassword').send_keys(password)
+            # enter password
+            self.driver.find_element_by_id('txtPassword').send_keys(password)
 
-        self.browser.find_element_by_id('btnLogin').click()
+        # click Login button
+        self.driver.find_element_by_id('btnLogin').click()

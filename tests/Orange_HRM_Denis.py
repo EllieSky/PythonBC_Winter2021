@@ -1,6 +1,8 @@
 import unittest
 from selenium import webdriver
 import time
+
+from pages.login import LoginPage
 from tests import CHROME_PATH
 
 
@@ -13,6 +15,8 @@ class OrangeHRMLogin(unittest.TestCase):
         driver.maximize_window()
         self.driver = driver
         driver.get("http://hrm-online.portnov.com/")
+
+
 
     def tearDown(self) -> None:
         self.driver.quit()

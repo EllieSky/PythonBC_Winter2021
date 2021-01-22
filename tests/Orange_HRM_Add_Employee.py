@@ -1,37 +1,31 @@
 import unittest
 from selenium import webdriver
-import time
+
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select # works on the tags that have SELECT tag
 from selenium.webdriver.support.wait import WebDriverWait
+import pages
+from pages.login import LoginPage
 
 
-class OrangeHRMEmpAdd(unittest.TestCase):
+class OrangeHRMEmpAddEmployee(unittest.TestCase):
 
     def setUp(self) -> None:
         driver = webdriver.Chrome()
         driver.maximize_window()
         self.driver = driver
         driver.get("http://hrm-online.portnov.com/")
+        self.login_page = LoginPage(driver)
+        self.login_page.login()
 
     def tearDown(self) -> None:
         self.driver.quit()
 
-    def login(self, username, password):
-        # enter username
-        self.driver.find_element_by_id('txtUsername').send_keys(username) if username else None
-
-        if password:
-            # enter password
-            self.driver.find_element_by_id('txtPassword').send_keys(password)
-
-        # click Login button
-        self.driver.find_element_by_id('btnLogin').click()
 
     def test_emp_add_user(self):
-        self.login('admin', 'password')
+        #self.login_page.login('admin', 'password') Dont need this as the function is called from a set up class.
 
         # Test Variables
         driver = self.driver
@@ -39,7 +33,7 @@ class OrangeHRMEmpAdd(unittest.TestCase):
         wait = WebDriverWait(driver, 15)
         first_name = "Denis"
         last_name = "Frolov"
-        user_name = "Denisfrolov"
+        user_name = (first_name + last_name).lower()
         new_password = "password"
         picture = "C:/Users/Denis/Dropbox/My PC (DESKTOP-KJ79GMA)/Documents/Silver Auto Python Bootcamp/upload files/test.jpg"
         expected_login_url = "http://hrm-online.portnov.com/symfony/web/index.php/auth/login"
@@ -48,7 +42,9 @@ class OrangeHRMEmpAdd(unittest.TestCase):
 
         wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
         driver.find_element_by_id("btnAdd").click()
-        # TODO Need to figure out why the following Waits are not working: #wait.until(EC.url_contains('/viewEmployeeList'))
+
+        # TODO Need to figure out why the following Waits are not working:
+        #  #wait.until(EC.url_contains('/viewEmployeeList'))
         #  #wait.until(EC.element_to_be_clickable([By.ID, "btnAdd"]))
 
         # Two more Waits for practice
@@ -86,9 +82,9 @@ class OrangeHRMEmpAdd(unittest.TestCase):
         driver.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
         self.assertTrue(driver.current_url, expected_login_url)
 
-# Logging in with a newly created user
+        # Logging in with a newly created user
 
-        self.login(user_name + employee_id, new_password)
+        self.login_page.login(user_name + employee_id, new_password)
         wait.until(EC.presence_of_element_located([By.ID, "welcome"]))
         welcome = driver.find_element_by_id("welcome").text
         self.assertEqual("Welcome Denis", welcome)
