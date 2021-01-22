@@ -23,4 +23,3 @@ class AdminLoginFixture(BaseFixture):
     def setUp(self) -> None:
         super().setUp()
         self.login_page.login()
-        wait =  WebDriverWait
