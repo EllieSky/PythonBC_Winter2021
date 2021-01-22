@@ -7,22 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select # works on the tags that have SELECT tag
 from selenium.webdriver.support.wait import WebDriverWait
 import pages
+from fixtures.fixture import BaseFixture
 from pages.login import LoginPage
 
-
-class OrangeHRMEmpAddEmployee(unittest.TestCase):
-
-    def setUp(self) -> None:
-        driver = webdriver.Chrome()
-        driver.maximize_window()
-        self.driver = driver
-        driver.get("http://hrm-online.portnov.com/")
-        self.login_page = LoginPage(driver)
-        self.login_page.login()
-
-    def tearDown(self) -> None:
-        self.driver.quit()
-
+# Base fixture in Class imports the fixtures we created
+class OrangeHRMEmpAddEmployee(BaseFixture):
 
     def test_emp_add_user(self):
         #self.login_page.login('admin', 'password') Dont need this as the function is called from a set up class.
