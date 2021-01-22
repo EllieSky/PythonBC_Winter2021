@@ -1,6 +1,8 @@
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+
 from pages.login import LoginPage
 from tests import CHROME_PATH
 
@@ -16,3 +18,9 @@ class BaseFixture(unittest.TestCase):
 
     def tearDown(self) -> None:
         self.driver.quit()
+
+class AdminLoginFixture(BaseFixture):
+    def setUp(self) -> None:
+        super().setUp()
+        self.login_page.login()
+        wait =  WebDriverWait
