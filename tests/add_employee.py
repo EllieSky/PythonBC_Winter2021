@@ -6,27 +6,22 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from fixture.fixture import BaseFixture
+from pages.login import LoginPage
 from tests import CHROME_PATH
 
 
-class AddEmployee(unittest.TestCase):
-    def setUp(self) -> None:
-        browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        self.browser = browser
-        browser.get('http://hrm-online.portnov.com/')
+class AddEmployee(BaseFixture):
 
-    def tearDown(self) -> None:
-        self.browser.quit()
-
-    def login(self, username, password):
-        # enter username
-        self.browser.find_element_by_id('txtUsername').send_keys(username) if username else None
-
-        if password:
-            # enter password
-            self.browser.find_element_by_id('txtPassword').send_keys(password)
-
-        self.browser.find_element_by_id('btnLogin').click()
+    # def login(self, username, password):
+    #     # enter username
+    #     self.browser.find_element_by_id('txtUsername').send_keys(username) if username else None
+    #
+    #     if password:
+    #         # enter password
+    #         self.browser.find_element_by_id('txtPassword').send_keys(password)
+    #
+    #     self.browser.find_element_by_id('btnLogin').click()
 
     def f_l_name(self, f_name, l_name):
         # enter first name
@@ -37,7 +32,7 @@ class AddEmployee(unittest.TestCase):
             self.browser.find_element_by_id('lastName').send_keys(l_name)
 
     def test_add_emp(self):
-        self.login('admin', 'password')
+        self.login_page.login()
 
         WebDriverWait(self.browser, 5).until(
             expected_conditions.presence_of_element_located(
@@ -63,7 +58,9 @@ class AddEmployee(unittest.TestCase):
             expected_conditions.visibility_of_element_located([By.ID, 'user_name'])
         )
 
-        self.browser.find_element_by_id('user_name').send_keys('Kateryna'+'Germash'+emp_id)
+        # send keys immediately
+        self.browser.find_element_by_id('user_name').send_keys(
+            'Kateryna', 'Germash', emp_id)
         self.browser.find_element_by_id('user_password').send_keys('password')
         self.browser.find_element_by_id('re_password').send_keys('password')
         self.browser.find_element_by_id('btnSave').click()
@@ -108,23 +105,6 @@ class AddEmployee(unittest.TestCase):
         )
         welcome_user = self.browser.find_element_by_id('welcome').text
         self.assertTrue('Welcome Kateryna', welcome_user)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         # time.sleep(3)
 
