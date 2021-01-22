@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pages.login import LoginPage
 from tests import CHROME_PATH
 
 
@@ -16,21 +17,14 @@ class EmpSearch(unittest.TestCase):
         # browser session
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
         browser.get('http://hrm-online.portnov.com/')
+        self.login_page = LoginPage(browser)
+        self.login_page.login()
         self.browser = browser
 
     def tearDown(self) -> None:
         self.browser.quit()
 
-    def login(self, username, password):
-        self.browser.find_element_by_id('txtUsername').send_keys(username) if username else None
-
-        if password:
-            self.browser.find_element_by_id('txtPassword').send_keys(password)
-
-        self.browser.find_element_by_id('btnLogin').click()
-
     def test_search_by_job_title(self):
-        self.login('admin', 'password')
         # self.browser.find_element_by_id('empsearch_job_title').send_keys('SDET')
         #  OR
         # self.browser.find_element_by_id('empsearch_job_title').click()
@@ -57,7 +51,6 @@ class EmpSearch(unittest.TestCase):
     def test_search_by_id(self):
         emp_id = '3250'
 
-        self.login('admin', 'password')
         self.browser.find_element_by_id('empsearch_id').send_keys(emp_id)
 
         self.browser.find_element_by_id('searchBtn').click()
@@ -69,14 +62,12 @@ class EmpSearch(unittest.TestCase):
         # OR
         self.assertEqual(1, len(list_of_rows))
 
-
         result = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[2]').text
         self.assertEqual(emp_id, result)
 
     def test_search_by_emp_name(self):
         name = "amb"
 
-        self.login('admin', 'password')
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(name)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
 
@@ -94,11 +85,14 @@ class EmpSearch(unittest.TestCase):
 
             self.assertIn(name, [first_name, last_name])
             # OR
-            self.assertTrue(first_name.find(name) != -1 or last_name.find(name) != -1)
+            self.assertTrue(first_name.find(name) != -1 or last_name.find(name) != -1,
+                            f"Neither the first name ({first_name}) nor the last name ({last_name}) matched the search criteria: {name}")
 
         for index in range(len(list_of_rows)):
-            first_name = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr[' + (index + 1) + ']/td[3]').text
-            last_name = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr[' + (index + 1) + ']/td[4]').text
+            first_name = self.browser.find_element_by_xpath(
+                '//*[@id="resultTable"]/tbody/tr[' + str(index + 1) + ']/td[3]').text
+            last_name = self.browser.find_element_by_xpath(
+                '//*[@id="resultTable"]/tbody/tr[' + str(index + 1) + ']/td[4]').text
 
             self.assertTrue(name in first_name + last_name)
 
