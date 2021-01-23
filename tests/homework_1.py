@@ -15,7 +15,7 @@ class TestTimeConverter(unittest.TestCase):
         self.assertEqual(2040, actual_seconds)
 
     def test_positive_minutes_and_seconds(self):
-        actual_seconds = self.convert_into_seconds(seconds=25, minutes=100)
+        actual_seconds = self.convert_into_seconds(minutes=25, seconds=100)
         ##### SAME AS:
         # actual_seconds = convert_into_seconds(0, 100, 25)
         self.assertEqual(6025, actual_seconds)
