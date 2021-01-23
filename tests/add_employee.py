@@ -1,25 +1,13 @@
 import unittest
 
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from pages.login import LoginPage
-from tests import CHROME_PATH
+from fixtures.fixture import BaseFixture
 
 
-class AddEmployee(unittest.TestCase):
-    def setUp(self) -> None:
-        # browser session
-        browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        browser.get('http://hrm-online.portnov.com/')
-        self.browser = browser
-        self.login_page = LoginPage(browser)
-
-    def tearDown(self) -> None:
-        self.browser.quit()
-
+class AddEmployee(BaseFixture):
     def test_add_employee_with_credentials(self):
         wait = WebDriverWait(self.browser, 5)
         first = "Jane"
@@ -64,7 +52,7 @@ class AddEmployee(unittest.TestCase):
         wait.until(EC.url_contains('/auth/login'))
 
         # self.login(first + last + emp_id, 'password')
-        self.login((first, last, emp_id))
+        self.login_page.login((first, last, emp_id))
 
         welcome_message = wait.until(EC.presence_of_element_located(
             [By.ID, 'welcome']
