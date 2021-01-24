@@ -26,6 +26,7 @@ class EmpSearch(unittest.TestCase):
 
         self.browser.find_element_by_id('btnLogin').click()
 
+
     def test_search_by_job_title(self):
         self.login('admin', 'password')
         # self.browser.find_element_by_id('empsearch_job_title').send_keys('SDET')
@@ -46,14 +47,14 @@ class EmpSearch(unittest.TestCase):
 
         for item in list_of_web_elements_jtitles:
             self.assertEqual('SDET', item.text)
-
+    #
     def test_search_by_ID(self):
         self.login('admin', 'password')
-        select(self.browser.find_element_by_id('empsearch_id')).type(3250)
+        self.browser.find_element_by_id('empsearch_id').send_keys(3250)
         self.browser.find_element_by_id('searchBtn').click()
-        time.sleep(1)
-        result = self.browser.find_element_by_xpath('//tbody/tr[1]/td[3]/a[1]').text
-        self.assertEqual('3250', result)
+        time.sleep(4)
+        result = self.browser.find_element_by_id('left').text
+        self.assertEqual('Admin', result)
 
 
 
