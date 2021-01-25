@@ -24,6 +24,7 @@ class EmployeeSort(BaseFixture):
         self.browser.find_element_by_link_text("First (& Middle) Name").click()
         wait.until(EC.url_contains('/pim/viewEmployeeList?sortField=firstMiddleName&sortOrder=ASC'))
 
+
         # get info about qty of names in the list: 1-50 of 74
         page_info = self.browser.find_element_by_xpath("//li[@class='desc']").text
         # break info into list '1-50' 'of' '74'
