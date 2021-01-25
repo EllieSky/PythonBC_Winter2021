@@ -24,13 +24,13 @@ class EmployeeSort(BaseFixture):
         self.browser.find_element_by_link_text("First (& Middle) Name").click()
         wait.until(EC.url_contains('/pim/viewEmployeeList?sortField=firstMiddleName&sortOrder=ASC'))
 
-        # get info about items in the list: 1-50 of 74
+        # get info about qty of names in the list: 1-50 of 74
         page_info = self.browser.find_element_by_xpath("//li[@class='desc']").text
         # break info into list '1-50' 'of' '74'
         page_info = page_info.split()
-        # get total items count
+        # get total names count
         names_qty = int(page_info[2])
-        # split first entry 1-50 into list by "-" sign and get last name - i.e. number if names per page
+        # split first entry 1-50 into list by "-" sign and get last name - i.e. qty of names per page
         names_per_page = int(page_info[0].split("-")[1])
         # calculate number of pages and round it to nearest int
         pages_count = int(names_qty / names_per_page + 0.999)
