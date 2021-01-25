@@ -43,10 +43,18 @@ class BasicLogIn(unittest.TestCase):
 
         self.assertEqual("Invalid credentials", spanMessage)
 
-    # def test_empty_login(self):
-    #     browser = self.browser
-    #     self.browser.get('http://hrm-online.portnov.com')
-    #
+    def test_empty_username_login(self):
+        browser = self.browser
+        self.browser.get('http://hrm-online.portnov.com')
+        browser.find_element_by_id("txtUsername").send_keys()
+        browser.find_element_by_id("txtPassword").send_keys("Password")
+        browser.find_element_by_id("btnLogin").click()
+        time.sleep(3)
+        self.assertTrue(browser.current_url.endswith('validateCredentials'))
+        failing_massege = browser.find_element_by_id('spanMessage').text
+
+        self.assertEqual("Username cannot be empty", failing_massege)
+
 
 if __name__ == '__main__':
     unittest.main()
