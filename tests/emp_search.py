@@ -1,6 +1,7 @@
 import time
 import unittest
-
+from telnetlib import EC
+from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,34 +9,40 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from fixtures.fixture import AdminLogin
 from tests import CHROME_PATH
 
 
-class EmpSearch(unittest.TestCase):
+class EmpSearch(AdminLogin):
 
     def setUp(self) -> None:
-        # browser session
-        browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        browser.get("http://hrm-online.portnov.com/")
-        # Take  local browser and store it into SELF
-        self.browser = browser
+        super().setUp()
+        self.wait = WebDriverWait(self.browser, 5)
+        self.wait.until(
+            EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
 
-    def tearDown(self) -> None:
-        self.browser.quit()
+    # # browser session
+    # browser = webdriver.Chrome(executable_path=CHROME_PATH)
+    # browser.get("http://hrm-online.portnov.com/")
+    # # Take  local browser and store it into SELF
+    # self.browser = browser
 
-    def login(self, username, password):
-        # enter username
-        self.browser.find_element_by_id("txtUsername").send_keys(username) if username else None
-
-        if password:
-            # enter password
-            self.browser.find_element_by_id("txtPassword").send_keys(password)
-
-        # click Login button
-        self.browser.find_element_by_id("btnLogin").click()
+    # def tearDown(self) -> None:
+    #     self.browser.quit()
+    #
+    # def login(self, username, password):
+    #     # enter username
+    #     self.browser.find_element_by_id("txtUsername").send_keys(username) if username else None
+    #
+    #     if password:
+    #         # enter password
+    #         self.browser.find_element_by_id("txtPassword").send_keys(password)
+    #
+    #     # click Login button
+    #     self.browser.find_element_by_id("btnLogin").click()
 
     def test_search_by_job_title(self):
-        self.login("admin", "password")
+        # self.login("admin", "password")
         # self.browser.find_element_by_id("empsearch_job_title").send_keys("SDET")
         # OR
         # browser.find_element_by_id("empsearch_job_title").click()
@@ -49,8 +56,7 @@ class EmpSearch(unittest.TestCase):
         self.browser.find_element_by_xpath("//input[@id='searchBtn']").click()
 
         WebDriverWait(self.browser, 5).until(expected_conditions.presence_of_element_located(
-                [By.CSS_SELECTOR, '#empsearch_job_title > option[selected][value="42"]']))
-
+            [By.CSS_SELECTOR, '#empsearch_job_title > option[selected][value="42"]']))
 
         result = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]').text
         self.assertEqual('SDET', result)
@@ -63,7 +69,7 @@ class EmpSearch(unittest.TestCase):
     def test_search_by_id(self):
         emp_id = '3250'
 
-        self.login('admin', 'password')
+        # self.login('admin', 'password')
         self.browser.find_element_by_id('empsearch_id').send_keys(emp_id)
 
         self.browser.find_element_by_id('searchBtn').click()
@@ -81,7 +87,6 @@ class EmpSearch(unittest.TestCase):
     def test_search_by_emp_name(self):
         name = "amb"
 
-        self.login('admin', 'password')
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(name)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
 
@@ -94,23 +99,22 @@ class EmpSearch(unittest.TestCase):
         list_of_rows = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr')
 
         for single_row in list_of_rows:
-            first_name = single_row.find_elements_by_xpath(".//td[3]").text.lower()
-            last_name = single_row.find_elements_by_xpath(".//td[4]").text.lower()
+            first_name = single_row.find_element_by_xpath(".//td[3]").text.lower()
+            last_name = single_row.find_element_by_xpath(".//td[4]").text.lower()
 
-            self.assertIn(name, [first_name, last_name])
+            self.assertIn(name, " ".join([first_name, last_name]))
             # OR
-            self.assertTrue(first_name.find(name) != -1 or last_name.find(name) != -1)
+            self.assertTrue(first_name.find(name) != -1 or last_name.find(name) != -1,
+                            f"Neither the first name ({first_name}) nor the last name ({last_name}) matched the search criteria: {name}")
 
         for index in range(len(list_of_rows)):
             first_name = self.browser.find_element_by_xpath(
-                '//*[@id="resultTable"]/tbody/tr[' + (index + 1) + ']/td[3]').text
+                '//*[@id="resultTable"]/tbody/tr[' + str(index + 1) + ']/td[3]').text.lower()
             last_name = self.browser.find_element_by_xpath(
-                '//*[@id="resultTable"]/tbody/tr[' + (index + 1) + ']/td[4]').text
+                '//*[@id="resultTable"]/tbody/tr[' + str(index + 1) + ']/td[4]').text.lower()
 
-            self.assertTrue(name in first_name + last_name)
+            self.assertTrue(name in first_name + last_name,
+                            f"Full name '{first_name} {last_name}' did not match the search keyword '{name}'.")
 
-
-
-
-if __name__ == '__main__':
-    unittest.main()
+    if __name__ == '__main__':
+        unittest.main()

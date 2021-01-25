@@ -2,6 +2,7 @@ import time
 import unittest
 
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
@@ -44,7 +45,7 @@ class Homework_8(unittest.TestCase):
         el.send_keys(name)
         el.send_keys(Keys.ESCAPE)
 
-    def test_search_by_employee_ID(self):
+    def add_new_employee(self):
         self.login('admin', 'password')
         time.sleep(1)
 
@@ -80,10 +81,14 @@ class Homework_8(unittest.TestCase):
         self.assertTrue(self.browser.find_element_by_class_name('personalDetails').is_displayed())
         self.assertEqual(self.browser.find_element_by_id("personal_txtEmpFirstName").get_attribute("value"), "John")
 
-        action = ActionChains(self.browser)
-        self.browser.find_element_by_id("welcome").click()
-        action.move_to_element(self.browser.find_element_by_xpath("//a[contains(text(),'Logout')]")).perform()
-        self.browser.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
+        # action = ActionChains(self.browser)
+        # self.browser.find_element_by_id("welcome").click()
+        # action.move_to_element(self.browser.find_element_by_xpath("//a[contains(text(),'Logout')]")).perform()
+        # self.browser.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
+
+        self.browser.find_element_by_id('welcome').click()
+        WebDriverWait(self.browser, 5).until(expected_conditions.presence_of_element_located([By.LINK_TEXT, "Logout"]))
+        self.browser.find_element_by_link_text("Logout").click()
 
         self.login(("John", "Test", employee_id), ("Test", employee_id))
 
