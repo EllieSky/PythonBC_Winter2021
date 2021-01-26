@@ -2,7 +2,7 @@ import unittest
 
 from selenium import webdriver
 
-from pages.login import LoginPage
+from pages.login_page import LoginPage
 from tests import CHROME_PATH
 
 
@@ -23,4 +23,5 @@ class AdminLogin(BaseFixture):
     def setUp(self) -> None:
         super().setUp()
         self.login_page.login()
+
 

@@ -6,12 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-from fixture.fixture import BaseFixture
+from fixtures.fixture import BaseFixture
 from tests import CHROME_PATH
 
-
-class WedDriverWait(object):
-    pass
 
 
 class BasicLogin(BaseFixture):
@@ -46,7 +43,7 @@ class BasicLogin(BaseFixture):
         # Take browser out of SELF into local browser variable
         browser = self.browser
         url = browser.current_url
-        self.login_page.login('admin', 'password')
+        self.login_page.login()
         wait = WebDriverWait(browser, 15)
         wait.until(expected_conditions.url_contains('/pim/viewEmployeeList'))
         wait.until(expected_conditions.presence_of_element_located([By.ID, 'welcome']))
@@ -60,7 +57,7 @@ class BasicLogin(BaseFixture):
         # Take browser out of SELF into local browser variable
         browser = self.browser
 
-        self.login_page.login(password = None)
+        self.login_page.login(password=None)
         error_message = browser.find_element_by_id('spanMessage').text
         self.assertEqual('http://hrm-online.portnov.com/symfony/web/index.php/auth/login', browser.current_url)
         self.assertEqual('Password cannot be empty', error_message)

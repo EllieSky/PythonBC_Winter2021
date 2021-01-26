@@ -8,20 +8,25 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
-from fixture.fixture import BaseFixture
-from pages.login import LoginPage
+from fixtures.fixture import BaseFixture, AdminLogin
+from pages.login_page import LoginPage
 from tests import CHROME_PATH
 
 
-class EmpSearch(BaseFixture):
+class EmpSearch(AdminLogin):
 
-    def setUp(self) -> None:
-        super().setUp()
+    # def setUp(self) -> None:
+    #     super().setUp()
+    #     self.login_page.login()
+
         # browser session creating for Chrome
         # browser = webdriver.Chrome(executable_path=CHROME_PATH)
         # Take locale browser and store into SELF
         # self.login_page = LoginPage(browser)
-        self.login_page.login()
+
+
+    # def tearDown(self) -> None:
+    #     self.browser.quit()
 
 
     # def login(self, username, password):
@@ -70,7 +75,7 @@ class EmpSearch(BaseFixture):
 
     def test_search_by_id(self):
         emp_id = '3250'
-        self.login_page.login('admin', 'password')
+        # self.login_page.login('admin', 'password')
         time.sleep(1)
         self.browser.find_element_by_id('empsearch_id').send_keys(emp_id)
 
@@ -88,7 +93,7 @@ class EmpSearch(BaseFixture):
 
     def test_search_by_name(self):
 
-        self.login_page.login('admin', 'password')
+        # self.login_page.login('admin', 'password')
         time.sleep(1)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys('David')
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
@@ -109,7 +114,7 @@ class EmpSearch(BaseFixture):
     def test_search_by_name2(self):
 
         name = 'amb'
-        self.login_page.login('admin', 'password')
+        # self.login_page.login('admin', 'password')
         time.sleep(1)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(name)
         self.browser.find_element_by_id('empsearch_employee_name_empName').send_keys(Keys.ESCAPE)
@@ -123,8 +128,8 @@ class EmpSearch(BaseFixture):
 
         list_of_rows = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr')
         for single_row in list_of_rows:
-            first_name = single_row.find_element_by_xpath('.//td[3]').text.lower()
-            last_name = single_row.find_element_by_xpath('.//td[4]').text.lower()
+            first_name = single_row.find_element_by_xpath('//td[3]').text.lower()
+            last_name = single_row.find_element_by_xpath('//td[4]').text.lower()
 
             self.assertIn(name, [first_name, last_name])
             # OR
