@@ -30,6 +30,7 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
         for i in range(len(names_table)):
             name = names_table[i].text.lower()
             list_of_names.append(name)
+            print(list_of_names)
             self.assertEqual(list_of_names, sorted(list_of_names))
 
     # Clicking next button if there is more than one page
@@ -37,9 +38,9 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
         if next_button.is_displayed():
             next_button.click()
             wait.until(EC.url_contains, "viewEmployeeList")
-            driver.quit()
-        else:
-            print("There is only one page")
+            self.assertTrue(EC.url_contains, "viewEmployeeList")
+
+        else: driver.quit()
 
     def test_emp_sorting_with_next_page_validation(self): # This is a second part of HW with validation of page 2
 
