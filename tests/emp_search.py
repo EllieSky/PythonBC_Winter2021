@@ -15,14 +15,7 @@ from tests import CHROME_PATH
 
 class EmpSearch(AdminLogin):
 
-    # def setUp(self) -> None:
-    #     super().setUp()
-    #     self.login_page.login()
-
-        # browser session creating for Chrome
-        # browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        # Take locale browser and store into SELF
-        # self.login_page = LoginPage(browser)
+            # self.login_page = LoginPage(browser)
 
 
     # def tearDown(self) -> None:
