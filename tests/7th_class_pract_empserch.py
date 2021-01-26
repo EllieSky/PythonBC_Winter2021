@@ -47,13 +47,13 @@ class BasicLogIn(unittest.TestCase):
         for item in list_of_web_elements_jtitles:
             self.assertEqual('SDET', item.text)
 
-    def test_serch_by_ID(self):
-
-
-
-
-
-    def test_serch_by_name(self):david
+    # def test_serch_by_ID(self):
+    #
+    #
+    #
+    #
+    #
+    # def test_serch_by_name(self):david
 
 
 if __name__ == '__main__':
