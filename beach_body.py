@@ -9,8 +9,10 @@ from tests import CHROME_PATH
 class BeachBody(unittest.TestCase):
     def test_get_started_button(self):
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        browser.get('https://www.beachbody.com/')
-        browser.find_element_by_id('cta-2EHOwMtRUFMYesTfPEvoPg').click()
+        browser.get('https://www.beachbody.com
+        
+
+        browser.find_element_by_class_name('button').click(
 
         time.sleep(1)
 

@@ -1,3 +1,4 @@
+
 import time
 import unittest
 
@@ -55,9 +56,11 @@ class AddEmployee(unittest.TestCase):
         self.browser.find_element_by_id('firstName').send_keys('kateryna')
         self.browser.find_element_by_id('lastName').send_keys('Germash')
 
+
         emp_id = self.browser.find_element_by_id('employeeId').get_attribute('value')
 
         self.browser.find_element_by_id('chkLogin').click()
+<<<<<< Germash_session6
 
         WebDriverWait(self.browser, 5).until(
             expected_conditions.visibility_of_element_located([By.ID, 'user_name'])

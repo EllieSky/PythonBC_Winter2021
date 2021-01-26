@@ -1,0 +1,19 @@
+Homework
+
+Part 1:
+
+login
+click on the "First (& Middle) Name" header of the table
+    Hint: it's a link so you can locate it By.LINK_TEXT
+wait for the sort to complete
+    Hint: there are 2 ways, but you will need to figure this out yourself
+loop and assert that the records are in alpha order by first/middle name
+    Hint: hrm sort is case insensitive and python is case sensitive.
+Do this for the 1st page ONLY
+
+Part 2:
+Add logic that continues to checks sort order across multiple pages.
+    Hint: if there are less than 50 records, there is no pagination element
+    Hint: Do not assume that max pages will always be 2... it could be any amount (12, 20, etc)
+
+Have fun!!!

@@ -1,0 +1,20 @@
+Homework
+
+Create the following script:
+
+1. login
+2. click the Add button
+3. enter first and last name
+4. save the employee code
+5. click the Create Login Details checkbox
+6. enter the username - it must be unique, so use the code as part of your username
+(first + last + employee code)
+7. enter the password ('password') and click Save
+8. ensure the record was fully saved - by ensuring you reach the Personal Details page for the new employee
+9. logout
+10. login as the new employee and check that the correct welcome message is displayed (Welcome <first_name>)
+
+The goal of this homework is to practise adding appropriate WebDriverWait where applicable.
+So debug, and add wait anywhere you would usually use time.sleep()
+
+
