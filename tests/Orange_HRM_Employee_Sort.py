@@ -1,6 +1,4 @@
-mport unittest
-from selenium import webdriver
-
+import unittest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,24 +7,39 @@ from selenium.webdriver.support.wait import WebDriverWait
 import pages
 from fixtures.fixture import BaseFixture
 from pages.login import LoginPage
+import time
 
 # Base fixture in Class imports the fixtures we created
-class OrangeHRMEmpAddEmployee(BaseFixture):
+class OrangeHRMEmpEmployeeSort(BaseFixture):
 
-    def test_emp_add_user(self):
-        #self.login_page.login('admin', 'password') Dont need this as the function is called from a set up class.
+    def test_emp_emp_sorting(self):
 
-        # Test Variables
         driver = self.driver
-        desired_url = 'http://hrm-online.portnov.com/symfony/web/index.php/pim/addEmployee'
         wait = WebDriverWait(driver, 15)
-        first_name = "Denis"
-        last_name = "Frolov"
-        user_name = (first_name + last_name).lower()
-        new_password = "password"
-        picture = "C:/Users/Denis/Dropbox/My PC (DESKTOP-KJ79GMA)/Documents/Silver Auto Python Bootcamp/upload files/test.jpg"
-        expected_login_url = "http://hrm-online.portnov.com/symfony/web/index.php/auth/login"
 
-        # Wait provided by Ellie
 
         wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
+        driver.find_element_by_link_text("First (& Middle) Name").click()
+    # Waiting for sort to complete by checking URL change
+        wait.until(EC.url_contains, "firstMiddleName&sortOrder=ASC")
+        page_info = driver.find_element_by_xpath("//li[@class='desc']").text
+        print(page_info)
+
+        names_table = driver.find_elements_by_xpath("//tbody/tr/td[3]")
+        list_of_names = []
+
+    # Getting a list of First names from the page, adding them to the list and comparing with the same list but sorted.
+        for i in range(len(names_table)):
+            name = names_table[i].text.lower()
+            list_of_names.append(name)
+            print(list_of_names)
+            self.assertEqual(list_of_names, sorted(list_of_names))
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()

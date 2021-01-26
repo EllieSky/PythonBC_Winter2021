@@ -9,37 +9,62 @@ from selenium.webdriver.support.wait import WebDriverWait
 import pages
 from fixtures.fixture import BaseFixture
 from pages.login import LoginPage
-import time
 
 # Base fixture in Class imports the fixtures we created
-class OrangeHRMEmpEmployeeSort(BaseFixture):
+class OrangeHRMEmpAddEmployee(BaseFixture):
 
-    def test_emp_emp_sorting(self):
+    def test_emp_add_user(self):
+        #self.login_page.login('admin', 'password') Dont need this as the function is called from a set up class.
 
         # Test Variables
         driver = self.driver
-        desired_url = 'http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=firstMiddleName&sortOrder=ASC'
+        desired_url = 'http://hrm-online.portnov.com/symfony/web/index.php/pim/addEmployee'
         wait = WebDriverWait(driver, 15)
+        first_name = "Denis"
+        last_name = "Frolov"
+        user_name = (first_name + last_name).lower()
+        new_password = "password"
+        picture = "C:/Users/Denis/Dropbox/My PC (DESKTOP-KJ79GMA)/Documents/Silver Auto Python Bootcamp/upload files/test.jpg"
         expected_login_url = "http://hrm-online.portnov.com/symfony/web/index.php/auth/login"
+
+        # Wait provided by Ellie
+
         wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
-        driver.find_element_by_link_text("First (& Middle) Name").click()
-        wait.until(EC.url_contains, "firstMiddleName&sortOrder=ASC")
-        driver.find_element_by_id("empsearch_employee_name_empName").send_keys("this is a test")
+        driver.find_element_by_id("btnAdd").click()
+
+        # Two more Waits for practice
+
+        wait.until(EC.url_to_be(desired_url))
+        wait.until(EC.presence_of_element_located([By.ID, "firstName"]))
+        driver.find_element_by_id("firstName").send_keys(first_name)
+        driver.find_element_by_id("lastName").send_keys(last_name)
+        employee_id = driver.find_element_by_id("employeeId").get_attribute("value")
+
+        # Uploading a test profile picture
+
+        upload_file = driver.find_element_by_id("photofile")
+        upload_file.send_keys(picture)
+        driver.find_element_by_id("chkLogin").click()
+
+        # Waiting for the fields to become visible
+
+        wait.until(EC.visibility_of_element_located([By.ID, "user_name"]))
+        driver.find_element_by_id("user_name").send_keys(user_name + employee_id)
+        driver.find_element_by_id("user_password").send_keys(new_password)
+        driver.find_element_by_id("re_password").send_keys(new_password)
+        driver.find_element_by_id("status").click()
+        driver.find_element_by_id("btnSave").click()
 
 
-        rows = len(driver.find_elements_by_xpath("//tbody/tr")) #count rows
-        columns = len(driver.find_elements_by_xpath("//tbody/tr[1]/td")) # count th tags(columns)
+        # Making sure Personal Details is displayed
 
-        print(rows)
-        print(columns)
+        wait.until((EC.presence_of_element_located([By.XPATH, "//h1[contains(text(),'Personal Details')]"])))
+        driver.find_element_by_id("welcome").click()
 
-        # for r in range(rows + 1):
-        #     for c in range(columns + 1):
-        #         names = driver.find_element_by_xpath("//tbody/tr/td[3]").text
-        #         print(names)
+        # This is a wait for the logout overlay to be visible
 
-
-
+        wait.until(EC.visibility_of_element_located([By.XPATH, "//a[contains(text(),'Logout')]"]))
+        driver.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
         self.assertTrue(driver.current_url, expected_login_url)
 
         # Logging in with a newly created user
@@ -48,7 +73,6 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
         wait.until(EC.presence_of_element_located([By.ID, "welcome"]))
         welcome = driver.find_element_by_id("welcome").text
         self.assertEqual("Welcome Denis", welcome)
-
 
 
 
