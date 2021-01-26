@@ -12,7 +12,7 @@ import time
 # Base fixture in Class imports the fixtures we created
 class OrangeHRMEmpEmployeeSort(BaseFixture):
 
-    def test_emp_emp_sorting_part_one(self): # This is a first part for page one amd next page click
+    def test_emp_sorting_page_one(self): # This is a first part for page one amd next page click
 
         driver = self.driver
         wait = WebDriverWait(driver, 15)
@@ -41,7 +41,7 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
         else:
             print("There is only one page")
 
-    def test_emp_emp_sorting_with_next_page(self):
+    def test_emp_sorting_with_next_page_validation(self): # This is a second part of HW with validation of page 2
 
         driver = self.driver
         wait = WebDriverWait(driver, 15)
