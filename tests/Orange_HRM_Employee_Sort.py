@@ -51,9 +51,9 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
         driver.find_element_by_link_text("First (& Middle) Name").click()
         # Waiting for sort to complete by checking URL change
         wait.until(EC.url_contains, "firstMiddleName&sortOrder=ASC")
-        next_button = driver.find_element_by_xpath("//*/div[1]/ul/li[6]/a")
-        names_table = driver.find_elements_by_xpath("//tbody/tr/td[3]")
         list_of_names = []
+
+        # The loop will run and look for next button in order to check next page
 
         while True:
             try:
@@ -62,7 +62,6 @@ class OrangeHRMEmpEmployeeSort(BaseFixture):
                 for i in range(len(names_table)):
                     name = names_table[i].text.lower()
                     list_of_names.append(name)
-                    print(list_of_names)
                     self.assertEqual(list_of_names, sorted(list_of_names))
 
                 wait.until(EC.url_contains, "viewEmployeeList")
