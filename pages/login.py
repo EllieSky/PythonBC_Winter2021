@@ -1,6 +1,6 @@
 from selenium.webdriver import Chrome
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class LoginPage:
@@ -16,4 +16,4 @@ class LoginPage:
             self.browser.find_element_by_id('txtPassword').send_keys(password)
 
         self.browser.find_element_by_id('btnLogin').click()
-        self.wait.until(EC.url_changes(url))
+        self.wait.until(EC.url_changes(url)) if username and password else None
