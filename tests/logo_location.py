@@ -26,7 +26,7 @@ class LogoLocation(AdminLogin):
 
         # assert
         self.assertLess(logo_bottom, body['height']/2)
-        self.assertLess(logo_right, body['width']/2)
+        self.assertLess(logo_right, body['width']/200)
 
 
 if __name__ == '__main__':

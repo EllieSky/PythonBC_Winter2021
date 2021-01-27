@@ -1,9 +1,10 @@
 import unittest
+import os
 
 from selenium import webdriver
 
 from pages.login import LoginPage
-from tests import CHROME_PATH
+from tests import CHROME_PATH, PROJ_PATH
 
 
 class BaseFixture(unittest.TestCase):
@@ -15,6 +16,20 @@ class BaseFixture(unittest.TestCase):
         self.login_page = LoginPage(browser)
 
     def tearDown(self) -> None:
+        if self._outcome.errors[1][1]:
+            test_results_folder = f"{PROJ_PATH}/screenshots"
+            if not os.path.exists(test_results_folder):
+                os.mkdir(test_results_folder)
+            test_name = self._testMethodName
+            self.browser.save_screenshot(f"{test_results_folder}/{test_name}.png")
+
+            file = open(f"{test_results_folder}/{test_name}.html", 'w', encoding="utf-8")
+            file.write(self.browser.page_source)
+            file.close()
+
+            # with open(f"{test_results_folder}/{test_name}.html", 'w', encoding="utf-8") as file:
+            #     file.write(self.browser.page_source)
+
         self.browser.quit()
 
 
