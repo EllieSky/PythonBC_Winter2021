@@ -47,13 +47,27 @@ class BasicLogIn(unittest.TestCase):
         for item in list_of_web_elements_jtitles:
             self.assertEqual('SDET', item.text)
 
-    # def test_serch_by_ID(self):
-    #
-    #
-    #
-    #
-    #
-    # def test_serch_by_name(self):david
+
+
+    def test_serch_by_ID(self):
+        self.login("admin", "password")
+        self.browser.find_element_by_id('empsearch_id').send_keys('441915')
+        self.browser.find_element_by_id('searchBtn').click()
+        time.sleep(2)
+        result = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr')
+        self.assertTrue([1], len([result]))
+
+    def test_search_by_name(self):
+        browser=self.browser
+        self.login("admin", "password")
+        browser.find_element_by_id('empsearch_employee_name_empName').send_keys("david")
+        browser.find_element_by_id('searchBtn').click()
+        time.sleep(3)
+        list_of_names=browser.find_elements_by_xpath("//*[@id=resultTable]/tbody")
+        for item in list_of_names:
+            self.assertTrue("david", item.text)
+
+
 
 
 if __name__ == '__main__':
