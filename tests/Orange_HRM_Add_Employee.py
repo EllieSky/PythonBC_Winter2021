@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select # works on the tags that have SELECT tag
 from selenium.webdriver.support.wait import WebDriverWait
 import pages
+import time
 from fixtures.fixture import BaseFixture
 from pages.login import LoginPage
 
@@ -29,7 +30,8 @@ class OrangeHRMEmpAddEmployee(BaseFixture):
 
         # Wait provided by Ellie
 
-        wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
+        wait.until(
+            EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
         driver.find_element_by_id("btnAdd").click()
 
         # Two more Waits for practice

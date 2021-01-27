@@ -1,0 +1,1440 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+        <title>OrangeHRM</title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                
+        <link rel="shortcut icon" href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/images/favicon.ico">
+        
+        <!-- Library CSS files -->
+        <link href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/css/reset.css" rel="stylesheet" type="text/css">
+        <link href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/css/tipTip.css" rel="stylesheet" type="text/css">
+        <link href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/css/jquery/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css">
+        <link href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/css/jquery/jquery.autocomplete.css" rel="stylesheet" type="text/css">
+        
+        <!-- Custom CSS files -->
+        <link href="/symfony/web/webres_537af76b8151f7.60690968/themes/default/css/main.css" rel="stylesheet" type="text/css">
+        
+        <script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/validate/jquery.validate.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/orangehrm.autocomplete.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.form.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.tipTip.minified.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/bootstrap-modal.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/jquery/jquery.clickoutside.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/orangehrm.validate.js"></script>
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/js/archive.js"></script>
+   
+        
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->        
+
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="/symfony/web/webres_537af76b8151f7.60690968/orangehrmCorePlugin/css/_ohrmList.css">
+</head>
+    <body>
+      
+        <div id="wrapper">
+            
+            <div id="branding">
+                <img src="/symfony/web/webres_537af76b8151f7.60690968/themes/default/images/logo.png" width="283" height="56" alt="OrangeHRM">
+                <a href="http://www.orangehrm.com/user-survey-registration.php" class="subscribe" target="_blank">Join OrangeHRM Community</a>
+                <a href="#" id="welcome" class="panelTrigger">Welcome Admin</a>
+                <div id="welcome-menu" class="panelContainer">
+                    <ul>
+                        <li><a href="/symfony/web/index.php/admin/changeUserPassword">Change Password</a></li>
+                        <li><a href="/symfony/web/index.php/auth/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <a href="#" id="help" class="panelTrigger">Help &amp; Training</a>
+                <div id="help-menu" class="panelContainer">
+                    <ul>
+                        <li><a href="http://www.orangehrm.com/support-plans.php?utm_source=application_support&amp;utm_medium=app_url&amp;utm_campaign=orangeapp" target="_blank">Support</a></li>
+                        <li><a href="http://www.orangehrm.com/training.php?utm_source=application_traning&amp;utm_medium=app_url&amp;utm_campaign=orangeapp" target="_blank">Training</a></li>
+                        <li><a href="http://www.orangehrm.com/addon-plans.shtml?utm_source=application_addons&amp;utm_medium=app_url&amp;utm_campaign=orangeapp" target="_blank">Add-Ons</a></li>
+                        <li><a href="http://www.orangehrm.com/customizations.php?utm_source=application_cus&amp;utm_medium=app_url&amp;utm_campaign=orangeapp" target="_blank">Customizations</a></li>
+                        <li><a href="http://forum.orangehrm.com/" target="_blank">Forum</a></li>
+                        <li><a href="http://blog.orangehrm.com/" target="_blank">Blog</a></li>
+                        <li><a href="http://sourceforge.net/apps/mantisbt/orangehrm/view_all_bug_page.php" target="_blank">Bug Tracker</a></li>                        
+                    </ul>
+                </div>
+            </div> <!-- branding -->      
+            
+            
+<div class="menu">
+    
+    <ul>
+        
+                    
+        <li><a href="/symfony/web/index.php/admin/viewAdminModule" id="menu_admin_viewAdminModule" class="firstLevelMenu"><b>Admin</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="#" id="menu_admin_UserManagement" class="arrow">User Management</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewSystemUsers" id="menu_admin_viewSystemUsers">Users</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_admin_Job" class="arrow">Job</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewJobTitleList" id="menu_admin_viewJobTitleList">Job Titles</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewPayGrades" id="menu_admin_viewPayGrades">Pay Grades</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/employmentStatus" id="menu_admin_employmentStatus">Employment Status</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/jobCategory" id="menu_admin_jobCategory">Job Categories</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/workShift" id="menu_admin_workShift">Work Shifts</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_admin_Organization" class="arrow">Organization</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewOrganizationGeneralInformation" id="menu_admin_viewOrganizationGeneralInformation">General Information</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewLocations" id="menu_admin_viewLocations">Locations</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewCompanyStructure" id="menu_admin_viewCompanyStructure">Structure</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_admin_Qualifications" class="arrow">Qualifications</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewSkills" id="menu_admin_viewSkills">Skills</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewEducation" id="menu_admin_viewEducation">Education</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewLicenses" id="menu_admin_viewLicenses">Licenses</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewLanguages" id="menu_admin_viewLanguages">Languages</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/membership" id="menu_admin_membership">Memberships</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/admin/nationality" id="menu_admin_nationality">Nationalities</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_admin_Configuration" class="arrow">Configuration</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/listMailConfiguration" id="menu_admin_listMailConfiguration">Email Configuration</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewEmailNotification" id="menu_admin_viewEmailNotification">Email Subscriptions</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/localization" id="menu_admin_localization">Localization</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewModules" id="menu_admin_viewModules">Modules</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li class="current"><a href="/symfony/web/index.php/pim/viewPimModule" id="menu_pim_viewPimModule" class="firstLevelMenu"><b>PIM</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="#" id="menu_pim_Configuration" class="arrow">Configuration</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/pim/configurePim" id="menu_pim_configurePim">Optional Fields</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/pim/listCustomFields" id="menu_pim_listCustomFields">Custom Fields</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/pimCsvImport" id="menu_admin_pimCsvImport">Data Import</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/pim/viewReportingMethods" id="menu_pim_viewReportingMethods">Reporting Methods</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/pim/viewTerminationReasons" id="menu_pim_viewTerminationReasons">Termination Reasons</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li class="selected"><a href="/symfony/web/index.php/pim/viewEmployeeList/reset/1" id="menu_pim_viewEmployeeList">Employee List</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/pim/addEmployee" id="menu_pim_addEmployee">Add Employee</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/core/viewDefinedPredefinedReports/reportGroup/3/reportType/PIM_DEFINED" id="menu_core_viewDefinedPredefinedReports">Reports</a>
+                        
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li><a href="/symfony/web/index.php/leave/viewLeaveModule" id="menu_leave_viewLeaveModule" class="firstLevelMenu"><b>Leave</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/leave/applyLeave" id="menu_leave_applyLeave">Apply</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/leave/viewMyLeaveList/reset/1" id="menu_leave_viewMyLeaveList">My Leave</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_leave_Entitlements" class="arrow">Entitlements</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/addLeaveEntitlement" id="menu_leave_addLeaveEntitlement">Add Entitlements</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/viewLeaveEntitlements/reset/1" id="menu_leave_viewLeaveEntitlements">Employee Entitlements</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/viewMyLeaveEntitlements/reset/1" id="menu_leave_viewMyLeaveEntitlements">My Entitlements</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_leave_Reports" class="arrow">Reports</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/viewLeaveBalanceReport" id="menu_leave_viewLeaveBalanceReport">Leave Entitlements and Usage Report</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/viewMyLeaveBalanceReport" id="menu_leave_viewMyLeaveBalanceReport">My Leave Entitlements and Usage Report</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_leave_Configure" class="arrow">Configure</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/defineLeavePeriod" id="menu_leave_defineLeavePeriod">Leave Period</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/leaveTypeList" id="menu_leave_leaveTypeList">Leave Types</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/defineWorkWeek" id="menu_leave_defineWorkWeek">Work Week</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/leave/viewHolidayList" id="menu_leave_viewHolidayList">Holidays</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/leave/viewLeaveList/reset/1" id="menu_leave_viewLeaveList">Leave List</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/leave/assignLeave" id="menu_leave_assignLeave">Assign Leave</a>
+                        
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li><a href="/symfony/web/index.php/time/viewTimeModule" id="menu_time_viewTimeModule" class="firstLevelMenu"><b>Time</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="#" id="menu_time_Timesheets" class="arrow">Timesheets</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/time/viewMyTimesheet" id="menu_time_viewMyTimesheet">My Timesheets</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/time/viewEmployeeTimesheet" id="menu_time_viewEmployeeTimesheet">Employee Timesheets</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_attendance_Attendance" class="arrow">Attendance</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/attendance/viewMyAttendanceRecord" id="menu_attendance_viewMyAttendanceRecord">My Records</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/attendance/punchIn" id="menu_attendance_punchIn">Punch In/Out</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/attendance/viewAttendanceRecord" id="menu_attendance_viewAttendanceRecord">Employee Records</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/attendance/configure" id="menu_attendance_configure">Configuration</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_time_Reports" class="arrow">Reports</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/time/displayProjectReportCriteria?reportId=1" id="menu_time_displayProjectReportCriteria">Project Reports</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/time/displayEmployeeReportCriteria?reportId=2" id="menu_time_displayEmployeeReportCriteria">Employee Reports</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/time/displayAttendanceSummaryReportCriteria?reportId=4" id="menu_time_displayAttendanceSummaryReportCriteria">Attendance Summary</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="#" id="menu_admin_ProjectInfo" class="arrow">Project Info</a>
+                        
+                                                
+                            <ul>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewCustomers" id="menu_admin_viewCustomers">Customers</a></li>
+                                
+                                                                
+                                    <li><a href="/symfony/web/index.php/admin/viewProjects" id="menu_admin_viewProjects">Projects</a></li>
+                                
+                                                                
+                            </ul> <!-- third level -->
+                            
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li><a href="/symfony/web/index.php/recruitment/viewRecruitmentModule" id="menu_recruitment_viewRecruitmentModule" class="firstLevelMenu"><b>Recruitment</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/recruitment/viewCandidates" id="menu_recruitment_viewCandidates">Candidates</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/recruitment/viewJobVacancy" id="menu_recruitment_viewJobVacancy">Vacancies</a>
+                        
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li><a href="/symfony/web/index.php/performance/viewPerformanceModule" id="menu_performance_viewPerformanceModule" class="firstLevelMenu"><b>Performance</b></a>
+            
+            <ul>
+                        
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/performance/listDefineKpi" id="menu_performance_listDefineKpi">KPI List</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/performance/saveKpi" id="menu_performance_saveKpi">Add KPI</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/performance/copyKpi" id="menu_performance_copyKpi">Copy KPI</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/performance/saveReview" id="menu_performance_saveReview">Add Review</a>
+                        
+                                                    
+                        </li>   
+                    
+                                        
+                        <li><a href="/symfony/web/index.php/performance/viewReview/mode/new" id="menu_performance_viewReview">Reviews</a>
+                        
+                                                    
+                        </li>   
+                    
+                                                
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+        <li><a href="/symfony/web/index.php/pim/viewMyDetails" id="menu_pim_viewMyDetails" class="firstLevelMenu"><b>My Info</b></a>
+            
+            <ul>
+                                    
+                        <li></li>
+                            
+                </ul> <!-- second level -->                        
+            </li>
+            
+                    
+    </ul> <!-- first level -->
+    
+</div> <!-- menu -->
+            <div id="content">
+
+                  
+<div class="box searchForm toggableForm" id="employee-information">
+    <div class="head">
+        <h1>Employee Information</h1>
+    </div>
+    <div class="inner">
+        <form id="search_form" name="frmEmployeeSearch" method="post" action="/symfony/web/index.php/pim/viewEmployeeList">
+
+            <fieldset>
+                
+                <ol>
+                    <li><label for="empsearch_employee_name">Employee Name</label>
+  
+
+<input type="text" name="empsearch[employee_name][empName]" value="" id="empsearch_employee_name_empName" class="ac_input inputFormatHint" autocomplete="off">
+
+<input type="hidden" name="empsearch[employee_name][empId]" id="empsearch_employee_name_empId" value="">
+
+        <script type="text/javascript">
+
+            var employees_empsearch_employee_name = [];
+
+            $(document).ready(function() {
+            
+                var nameField = $("#empsearch_employee_name_empName");
+                var idStoreField = $("#empsearch_employee_name_empId");
+                var typeHint = 'Type for hints...';
+                var hintClass = 'inputFormatHint';
+                var loadingMethod = 'ajax';
+                var loadingHint = 'Loading';
+            
+                if (idStoreField.val() != '') {
+                    idStoreField.data('item.name', nameField.val());
+                }
+                
+                nameField.data('typeHint', typeHint);
+                nameField.data('loadingHint', loadingHint);
+                
+                nameField.one('focus', function() {
+
+                        if ($(this).hasClass(hintClass)) {
+                            $(this).val("");
+                            $(this).removeClass(hintClass);
+                        }
+
+                    });
+                    
+                if( loadingMethod != 'ajax'){
+                    if (nameField.val() == '' || nameField.val() == typeHint) {
+                        nameField.val(typeHint).addClass(hintClass);
+                    }
+
+                    
+
+                    nameField.autocomplete(employees_empsearch_employee_name, {
+
+                        formatItem: function(item) {
+                            return $('<div/>').text(item.name).html();
+                        },
+                        formatResult: function(item) {
+                            return item.name
+                        }
+                      ,matchContains:true
+                        }).result(function(event, item) {
+                            idStoreField.val(item.id);
+                            idStoreField.data('item.name', item.name);
+                        }
+
+                    );
+                 }else{
+                        var value = nameField.val().trim();
+                        nameField.val(loadingHint).addClass('ac_loading');
+                        $.ajax({
+                               url: "/symfony/web/index.php/pim/getEmployeeListAjax",
+                               data: '',
+                               dataType: 'json',
+                               success: function(employeeList){
+
+                                     nameField.autocomplete(employeeList, {
+
+                                                formatItem: function(item) {
+                                                    return $('<div/>').text(item.name).html();
+                                                },
+                                                formatResult: function(item) {
+                                                    return item.name
+                                                }
+                                                
+                                                ,matchContains:true
+                                            }).result(function(event, item) {
+                                                idStoreField.val(item.id);
+                                                idStoreField.data('item.name', item.name);
+                                            }
+
+                                        );
+                                         nameField.removeClass('ac_loading'); 
+                                        
+                                         if(value==''){
+                                            nameField.val(typeHint).addClass(hintClass);
+                                         } else {
+                                            nameField.val(value).addClass();
+                                         }
+                                    }
+                             });
+                 }
+                
+            }); // End of $(document).ready
+
+                 
+        </script>
+
+
+</li>
+<li><label for="empsearch_id">Id</label>
+  <input type="text" name="empsearch[id]" id="empsearch_id" class="inputFormatHint">
+</li>
+<li><label for="empsearch_employee_status">Employment Status</label>
+  <select name="empsearch[employee_status]" id="empsearch_employee_status">
+<option value="0">All</option>
+<option value="1">Full Time</option>
+<option value="3">Hourly</option>
+<option value="2">Part Time</option>
+</select>
+</li>
+<li><label for="empsearch_termination">Include</label>
+  <select name="empsearch[termination]" id="empsearch_termination">
+<option value="1">Current Employees Only</option>
+<option value="2">Current and Past Employees</option>
+<option value="3">Past Employees Only</option>
+</select>
+</li>
+<li><label for="empsearch_supervisor_name">Supervisor Name</label>
+  <input type="text" name="empsearch[supervisor_name]" id="empsearch_supervisor_name" class="inputFormatHint ac_input" autocomplete="off">
+</li>
+<li><label for="empsearch_job_title">Job Title</label>
+  <select name="empsearch[job_title]" id="empsearch_job_title">
+<option value="0">All</option>
+<option value="16">CEO</option>
+<option value="17">Consultant</option>
+<option value="44">Development Manager</option>
+<option value="6">Office Manager</option>
+<option value="46">QA Engineer</option>
+<option value="5">QA Lead</option>
+<option value="38">QA Manager</option>
+<option value="42">SDET</option>
+<option value="45">Software Architect</option>
+<option value="43">Software Developer</option>
+<option value="41">Tester</option>
+</select>
+</li>
+<li><label for="empsearch_sub_unit">Sub Unit</label>
+  <select name="empsearch[sub_unit]" id="empsearch_sub_unit">
+<option value="0">All</option>
+<option value="2">HR</option>
+</select>
+<input type="hidden" name="empsearch[isSubmitted]" id="empsearch_isSubmitted">
+<input type="hidden" name="empsearch[_csrf_token]" value="2521b5596b5d153230b76efa3120b116" id="empsearch__csrf_token"></li>
+                </ol>
+                
+                <input type="hidden" name="pageNo" id="pageNo" value="">
+                <input type="hidden" name="hdnAction" id="hdnAction" value="search">                 
+                
+                <p>
+                    <input type="button" id="searchBtn" value="Search" name="_search">
+                    <input type="button" class="reset" id="resetBtn" value="Reset" name="_reset">                    
+                </p>
+                
+            </fieldset>
+            
+        </form>
+        
+    </div> <!-- inner -->
+
+    <a href="#" class="toggle tiptip">&gt;</a>
+    
+</div> <!-- employee-information -->
+
+<div class="box noHeader" id="search-results">
+    
+        
+    <div class="inner">
+    
+
+                
+            
+    <form method="post" action="/symfony/web/index.php/pim/deleteEmployees" name="frmList_ohrmListComponent" id="frmList_ohrmListComponent">
+        <input type="hidden" name="defaultList[_csrf_token]" value="7ab24b9fb4af9912d9132722b9187cf9" id="defaultList__csrf_token">        
+ <div class="top">          
+        
+
+        <input type="button" class="" id="btnAdd" name="btnAdd" value="Add">
+<input type="submit" class="delete" id="btnDelete" name="btnDelete" value="Delete" data-toggle="modal" data-target="#deleteConfModal" disabled="disabled">
+
+ <ul class="paging top"><li class="desc">1-50 of 74</li> <li class="first"><a href="javascript:submitPage(1)" class="tiptip">First</a></li> <li class="previous"><a href="javascript:submitPage(1)" class="tiptip">Previous</a></li> <li><a class="current" href="#">1</a></li> <li><a href="javascript:submitPage(2)">2</a></li> <li class="next"><a href="javascript:submitPage(2)" class="tiptip">Next</a></li> <li class="last"><a href="javascript:submitPage(2)" class="tiptip">Last</a></li></ul></div> <!-- top --> 
+
+         
+
+        
+
+
+         
+        <div id="helpText" class="helpText"></div>
+
+        <div id="scrollWrapper">
+            <div id="scrollContainer">
+            </div>
+        </div>        
+        <div id="tableWrapper">
+        <table class="table hover" id="resultTable">
+            
+                                <thead>
+                <tr><th rowspan="1" class="checkbox-col"><input type="checkbox" id="ohrmList_chkSelectAll" name="chkSelectAll" value=""></th>
+<th rowspan="1" style="width:5%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=employeeId&amp;sortOrder=ASC" class="null">Id</a></th>
+<th rowspan="1" style="width:13%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=firstMiddleName&amp;sortOrder=ASC" class="null">First (&amp; Middle) Name</a></th>
+<th rowspan="1" style="width:10%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=lastName&amp;sortOrder=ASC" class="null">Last Name</a></th>
+<th rowspan="1" style="width:20%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=jobTitle&amp;sortOrder=ASC" class="null">Job Title</a></th>
+<th rowspan="1" style="width:15%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=employeeStatus&amp;sortOrder=ASC" class="null">Employment Status</a></th>
+<th rowspan="1" style="width:15%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=subDivision&amp;sortOrder=ASC" class="null">Sub Unit</a></th>
+<th rowspan="1" style="width:25%" class="header"><a href="http://hrm-online.portnov.com/symfony/web/index.php/pim/viewEmployeeList?sortField=supervisor&amp;sortOrder=ASC" class="null">Supervisor</a></th>
+</tr>            
+                            </thead>
+
+            <tbody>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3277" name="chkSelectRow[]" value="3277"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3277">635919</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3277">Taylor</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3277">Adams</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left">Bob  Boss</td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3250" name="chkSelectRow[]" value="3250"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3250">3250</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3250">Admin</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3250">Admin</a></td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3263" name="chkSelectRow[]" value="3263"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3263">774863</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3263">Michael</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3263">Allen</a></td>
+                                                    <td class="left">QA Lead</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left">Bob  Boss</td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3284" name="chkSelectRow[]" value="3284"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3284">536378</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3284">Lauren</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3284">Anderson</a></td>
+                                                    <td class="left">QA Lead</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3280" name="chkSelectRow[]" value="3280"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3280">171837</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3280">Rachel</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3280">Becker</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3251" name="chkSelectRow[]" value="3251"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3251">0001</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3251">Bob</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3251">Boss</a></td>
+                                                    <td class="left">QA Manager</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3316" name="chkSelectRow[]" value="3316"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3316">435309</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3316">Anne</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3316">Braun</a></td>
+                                                    <td class="left">Development Manager</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3275" name="chkSelectRow[]" value="3275"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3275">125392</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3275">Russell</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3275">Brown</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left">Bob  Boss</td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3319" name="chkSelectRow[]" value="3319"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3319">727186</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3319">Nathan</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3319">Bush</a></td>
+                                                    <td class="left">Consultant</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3289" name="chkSelectRow[]" value="3289"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3289">704420</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3289">Jessica</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3289">Butler</a></td>
+                                                    <td class="left">QA Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3312" name="chkSelectRow[]" value="3312"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3312">428035</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3312">Sydney</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3312">Cardenas</a></td>
+                                                    <td class="left">Development Manager</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3267" name="chkSelectRow[]" value="3267"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3267">822182</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3267">Kristin</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3267">Carlson</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3256" name="chkSelectRow[]" value="3256"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3256">600123</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3256">Scott</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3256">Charles</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3305" name="chkSelectRow[]" value="3305"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3305">924521</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3305">Jonathan</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3305">Crawford</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3298" name="chkSelectRow[]" value="3298"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3298">437665</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3298">Samantha</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3298">Daugherty</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3279" name="chkSelectRow[]" value="3279"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3279">981264</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3279">Sarah</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3279">Edwards</a></td>
+                                                    <td class="left">QA Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3331" name="chkSelectRow[]" value="3331"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3331">14619668</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3331">Wilma</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3331">Flintstone</a></td>
+                                                    <td class="left">QA Manager</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3327" name="chkSelectRow[]" value="3327"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3327">350995</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3327">Connie</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3327">Gardner</a></td>
+                                                    <td class="left">QA Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3282" name="chkSelectRow[]" value="3282"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3282">868831</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3282">Megan</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3282">Gilbert</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3310" name="chkSelectRow[]" value="3310"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3310">449410</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3310">Thomas</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3310">Gonzales</a></td>
+                                                    <td class="left">Software Developer</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3264" name="chkSelectRow[]" value="3264"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3264">682079</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3264">Shane</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3264">Gonzalez</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3286" name="chkSelectRow[]" value="3286"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3286">183024</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3286">Lauren</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3286">Graves</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left">Bob  Boss</td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3287" name="chkSelectRow[]" value="3287"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3287">133961</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3287">David</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3287">Green</a></td>
+                                                    <td class="left">Software Architect</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3296" name="chkSelectRow[]" value="3296"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3296">758403</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3296">Brian</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3296">Guerrero</a></td>
+                                                    <td class="left">Software Developer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3301" name="chkSelectRow[]" value="3301"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3301">319659</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3301">David</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3301">Hampton</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3291" name="chkSelectRow[]" value="3291"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3291">860036</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3291">Michael</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3291">Hardin</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3290" name="chkSelectRow[]" value="3290"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3290">837996</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3290">Kristine</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3290">Hayes</a></td>
+                                                    <td class="left">QA Lead</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3326" name="chkSelectRow[]" value="3326"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3326">420546</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3326">Nicole</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3326">Herman</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3323" name="chkSelectRow[]" value="3323"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3323">406917</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3323">Rebecca</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3323">Hess</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3278" name="chkSelectRow[]" value="3278"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3278">179088</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3278">Christina</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3278">Holmes</a></td>
+                                                    <td class="left">Consultant</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3266" name="chkSelectRow[]" value="3266"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3266">749337</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3266">Kathryn</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3266">Huerta</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3253" name="chkSelectRow[]" value="3253"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3253">919154</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3253">Cindy</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3253">Hutchinson</a></td>
+                                                    <td class="left">SDET</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3295" name="chkSelectRow[]" value="3295"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3295">768542</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3295">Kimberly</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3295">Jacobson</a></td>
+                                                    <td class="left">Software Architect</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3320" name="chkSelectRow[]" value="3320"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3320">890839</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3320">Mark</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3320">Jenkins</a></td>
+                                                    <td class="left">Development Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3313" name="chkSelectRow[]" value="3313"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3313">366769</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3313">Anita</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3313">Jones</a></td>
+                                                    <td class="left">Development Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3285" name="chkSelectRow[]" value="3285"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3285">963055</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3285">Traci</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3285">Joseph</a></td>
+                                                    <td class="left">Development Manager</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3281" name="chkSelectRow[]" value="3281"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3281">944975</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3281">Roger</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3281">Kelly</a></td>
+                                                    <td class="left">Software Developer</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3300" name="chkSelectRow[]" value="3300"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3300">214166</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3300">Gerald</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3300">Knight</a></td>
+                                                    <td class="left">Software Developer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3321" name="chkSelectRow[]" value="3321"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3321">890987</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3321">Heather</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3321">Knox</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3315" name="chkSelectRow[]" value="3315"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3315">386847</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3315">Kristen</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3315">Koch</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3265" name="chkSelectRow[]" value="3265"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3265">584707</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3265">Henry</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3265">Lambert</a></td>
+                                                    <td class="left">Software Architect</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3271" name="chkSelectRow[]" value="3271"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3271">465819</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3271">Charles</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3271">Marsh</a></td>
+                                                    <td class="left">Software Developer</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3318" name="chkSelectRow[]" value="3318"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3318">270421</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3318">Andrew</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3318">Martin</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3283" name="chkSelectRow[]" value="3283"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3283">843517</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3283">Nicholas</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3283">Matthews</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3273" name="chkSelectRow[]" value="3273"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3273">647795</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3273">Erika</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3273">Mccoy</a></td>
+                                                    <td class="left">Office Manager</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3270" name="chkSelectRow[]" value="3270"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3270">967636</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3270">Kevin</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3270">Melendez</a></td>
+                                                    <td class="left">QA Lead</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3303" name="chkSelectRow[]" value="3303"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3303">977607</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3303">Patrick</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3303">Miller</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Part Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3299" name="chkSelectRow[]" value="3299"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3299">167218</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3299">Michael</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3299">Mitchell</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="odd">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3274" name="chkSelectRow[]" value="3274"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3274">654397</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3274">Michelle</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3274">Montes</a></td>
+                                                    <td class="left">QA Engineer</td>
+                                                    <td class="left">Full Time</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                            <tr class="even">
+                    <td><input type="checkbox" id="ohrmList_chkSelectRecord_3288" name="chkSelectRow[]" value="3288"></td>                                <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3288">845671</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3288">Nicole</a></td>
+                                                    <td class="left"><a href="/symfony/web/index.php/pim/viewEmployee/empNumber/3288">Nash</a></td>
+                                                    <td class="left">QA Lead</td>
+                                                    <td class="left">Hourly</td>
+                                                    <td class="left"></td>
+                                                    <td class="left"></td>
+                                            </tr>
+                                </tbody>
+                            </table>
+        </div> <!-- tableWrapper -->
+                    <div class="bottom">
+                                
+                <ul class="paging bottom"><li class="desc">1-50 of 74</li> <li class="first"><a href="javascript:submitPage(1)" class="tiptip">First</a></li> <li class="previous"><a href="javascript:submitPage(1)" class="tiptip">Previous</a></li> <li><a class="current" href="#">1</a></li> <li><a href="javascript:submitPage(2)">2</a></li> <li class="next"><a href="javascript:submitPage(2)" class="tiptip">Next</a></li> <li class="last"><a href="javascript:submitPage(2)" class="tiptip">Last</a></li></ul>            </div>
+                </form> <!-- frmList_ohrmListComponent --> 
+                
+        
+    </div> <!-- inner -->
+        
+</div> <!-- search-results -->
+
+<script type="text/javascript" src="/symfony/web/webres_537af76b8151f7.60690968/orangehrmCorePlugin/js/_ohrmList.js"></script>
+
+
+                    <script type="text/javascript">
+
+                        var rootPath = '/symfony/web/';
+
+                        $(document).ready(function() {
+                            ohrmList_init();
+
+                        });
+                                              
+
+</script>
+
+<!-- Confirmation box HTML: Begins -->
+<div class="modal hide" id="deleteConfModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>OrangeHRM - Confirmation Required</h3>
+  </div>
+  <div class="modal-body">
+    <p>Delete records?</p>
+  </div>
+  <div class="modal-footer">
+    <input type="button" class="btn" data-dismiss="modal" id="dialogDeleteBtn" value="Ok">
+    <input type="button" class="btn cancel" data-dismiss="modal" value="Cancel">
+  </div>
+</div>
+<!-- Confirmation box HTML: Ends -->
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        
+        var supervisors = [{"name":"Bob Boss","id":"3251"}];
+        
+        $('#btnDelete').attr('disabled', 'disabled');
+        
+        $("#ohrmList_chkSelectAll").click(function() {
+            if($(":checkbox").length == 1) {
+                $('#btnDelete').attr('disabled','disabled');
+            }
+            else {
+                if($("#ohrmList_chkSelectAll").is(':checked')) {
+                    $('#btnDelete').removeAttr('disabled');
+                } else {
+                    $('#btnDelete').attr('disabled','disabled');
+                }
+            }
+        });
+        
+        $(':checkbox[name*="chkSelectRow[]"]').click(function() {
+            if($(':checkbox[name*="chkSelectRow[]"]').is(':checked')) {
+                $('#btnDelete').removeAttr('disabled');
+            } else {
+                $('#btnDelete').attr('disabled','disabled');
+            }
+        });
+
+        // Handle hints
+        if ($("#empsearch_id").val() == '') {
+            $("#empsearch_id").val('Type Employee Id...')
+            .addClass("inputFormatHint");
+        }
+
+        if ($("#empsearch_supervisor_name").val() == '') {
+            $("#empsearch_supervisor_name").val('Type for hints...')
+            .addClass("inputFormatHint");
+        }
+
+        $("#empsearch_id, #empsearch_supervisor_name").one('focus', function() {
+
+            if ($(this).hasClass("inputFormatHint")) {
+                $(this).val("");
+                $(this).removeClass("inputFormatHint");
+            }
+        });
+
+        $("#empsearch_supervisor_name").autocomplete(supervisors, {
+            formatItem: function(item) {
+                return $('<div/>').text(item.name).html();
+            },
+            formatResult: function(item) {
+                return item.name
+            }  
+            ,matchContains:true
+        }).result(function(event, item) {
+        }
+    );
+
+        $('#searchBtn').click(function() {
+            $("#empsearch_isSubmitted").val('yes');
+            $('#search_form input.inputFormatHint').val('');
+            $('#search_form input.ac_loading').val('');
+            $('#search_form').submit();
+        });
+
+        $('#resetBtn').click(function(){
+            $("#empsearch_isSubmitted").val('yes');
+            $("#empsearch_employee_name_empName").val('');
+            $("#empsearch_supervisor_name").val('');
+            $("#empsearch_id").val('');
+            $("#empsearch_job_title").val('0');
+            $("#empsearch_employee_status").val('0');
+            $("#empsearch_sub_unit").val('0');
+            $("#empsearch_termination").val('1');
+            $('#search_form').submit();
+        });
+
+        $('#btnAdd').click(function() {
+            location.href = "/symfony/web/index.php/pim/addEmployee";
+        });
+        $('#btnDelete').click(function(){
+            $('#frmList_ohrmListComponent').submit(function(){
+                $('#deleteConfirmation').dialog('open');
+                return false;
+            });
+        });
+
+        /* Delete confirmation controls: Begin */
+        $('#dialogDeleteBtn').click(function() {
+            document.frmList_ohrmListComponent.submit();
+        });
+        /* Delete confirmation controls: End */
+        
+    }); //ready
+    
+    function submitPage(pageNo) {
+        document.frmEmployeeSearch.pageNo.value = pageNo;
+        document.frmEmployeeSearch.hdnAction.value = 'paging';
+        $('#search_form input.inputFormatHint').val('');
+        $('#search_form input.ac_loading').val('');
+        $("#empsearch_isSubmitted").val('no');
+        document.getElementById('search_form').submit();
+    }   
+</script>
+
+            </div> <!-- content -->
+          
+        </div> <!-- wrapper -->
+        
+        <div id="footer">
+            OrangeHRM 3.1.2<br>
+© 2005 - 2021 <a href="http://www.orangehrm.com" target="_blank">OrangeHRM, Inc</a>. All rights reserved.
+        </div> <!-- footer -->        
+        
+        
+ 
+        <script type="text/javascript">
+
+            $(document).ready(function() {                            
+                
+                /* Enabling tooltips */
+                $(".tiptip").tipTip();
+
+                /* Toggling header menus */
+                $("#welcome").click(function () {
+                    $("#welcome-menu").slideToggle("fast");
+                    $(this).toggleClass("activated-welcome");
+                    return false;
+                });
+                
+                $("#help").click(function () {
+                    $("#help-menu").slideToggle("fast");
+                    $(this).toggleClass("activated-help");
+                    return false;
+                });
+                
+                $('.panelTrigger').outside('click', function() {
+                    $('.panelContainer').stop(true, true).slideUp('fast');
+                });                
+
+                /* 
+                 * Button hovering effects 
+                 * Note: we are not using pure css using :hover because :hover applies to even disabled elements.
+                 * The pseudo class :enabled is not supported in IE < 9.
+                 */                
+                $(document).on({
+                    mouseenter: function () {
+                        $(this).addClass('hover');                        
+                    },
+                    mouseleave: function () {
+                        $(this).removeClass('hover');                        
+                    }
+
+                }, 'input[type=button], input[type=submit], input[type=reset]'); 
+  
+                /* Fading out main messages */
+                $(document).on({
+                    click: function() {
+                        $(this).parent('div.message').fadeOut("slow");
+                    }
+                }, '.message a.messageCloseButton');                
+
+                /* Toggling search form: Begins */
+                //$(".toggableForm .inner").hide(); // Disabling this makes search forms to be expanded by default.
+
+                $(".toggableForm .toggle").click(function () {
+                    $(".toggableForm .inner").slideToggle('slow', function() {
+                        if($(this).is(':hidden')) {
+                            $('.toggableForm .tiptip').tipTip({content:'Expand for Options'});
+                        } else {
+                            $('.toggableForm .tiptip').tipTip({content:'Hide Options'});
+                        }
+                    });
+                    $(this).toggleClass("activated");
+                });
+                /* Toggling search form: Ends */
+
+                /* Enabling/disabling form fields: Begin */
+                
+                $('form.clickToEditForm input, form.clickToEditForm select, form.clickToEditForm textarea').attr('disabled', 'disabled');
+                $('form.clickToEditForm input.calendar').datepicker('disable');
+                $('form.clickToEditForm input[type=button]').removeAttr('disabled');
+                
+                $('form input.editButton').click(function(){
+                    $('form.clickToEditForm input, form.clickToEditForm select, form.clickToEditForm textarea').removeAttr('disabled');
+                    $('form.clickToEditForm input.calendar').datepicker('enable');
+                });
+                
+                /* Enabling/disabling form fields: End */
+                
+            });
+            
+        </script>        
+
+    
+    
+
+
+<div id="tiptip_holder" style="max-width: 200px; margin: 229px 0px 0px 719px; display: block;" class="tip_bottom"><div id="tiptip_arrow" style="margin-left: 35px; margin-top: -12px;"><div id="tiptip_arrow_inner"></div></div><div id="tiptip_content">Hide Options</div></div></body></html>
