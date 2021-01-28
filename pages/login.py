@@ -16,5 +16,5 @@ class LoginPage:
             self.browser.find_element_by_id('txtPassword').send_keys(password)
 
         self.browser.find_element_by_id('btnLogin').click()
-        if password and username:
-            self.wait.until(EC.url_changes(url))
+
+        self.wait.until(EC.url_changes(url)) if password and username else None
