@@ -37,7 +37,7 @@ class AddEmployee(BaseFixture):
 
         self.browser.find_element_by_id('btnAdd').click()
 
-        wait.until(EC.url_contains('/addEmployee'))
+        wait.until(EC.url_contains('/pim/addEmployee'))
 
         wait.until(
              EC.presence_of_element_located([By.ID, 'lastName'])).send_keys(last)
@@ -74,11 +74,23 @@ class AddEmployee(BaseFixture):
         # self.assertTrue(f_name, 'Kateryna')
         # self.assertTrue(l_name, 'Germash')
 
-        self.browser.find_element_by_id('welcome').click()
+        self.browser.find_element_by_link_text('Job').click()
+
+        wait.until(EC.visibility_of_element_located([By.CSS_SELECTOR, 'h2']))
+        self.browser.find_element_by_xpath('//input[@id="btnSave"]').click()
+        self.browser.find_element_by_id('job_job_title').send_keys('QA Engineer')
+        self.browser.find_element_by_id('job_emp_status').send_keys('Full Time')
+        self.browser.find_element_by_id('btnSave').click()
+
+        wait.until(EC.presence_of_element_located(
+            [By.CSS_SELECTOR, '#job_job_title > option[selected][value = "46"]']))
+
+        self.browser.find_element_by_link_text('Welcome Admin').click()
 
         wait.until(
-            EC.visibility_of_element_located(
-                [By.LINK_TEXT, 'Logout'])).click()
+             EC.visibility_of_element_located(
+                 [By.LINK_TEXT, 'Logout']))
+        self.browser.find_element_by_link_text('Logout').click()
 
         wait.until(EC.url_contains('/auth/login'))
 
@@ -87,8 +99,7 @@ class AddEmployee(BaseFixture):
         wait.until(EC.url_contains('/pim/viewEmployeeList'))
 
         welcome_message = wait.until(
-            EC.presence_of_element_located(
-                [By.ID, 'welcome'])).text
+             EC.presence_of_element_located([By.ID, 'welcome'])).text
 
         self.assertEqual(f'Welcome {first}', welcome_message)
 
