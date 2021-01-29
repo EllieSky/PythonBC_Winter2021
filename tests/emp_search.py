@@ -1,7 +1,7 @@
 import time
 import unittest
+from selenium.webdriver import Chrome
 
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,13 +11,29 @@ from selenium.webdriver.support.wait import WebDriverWait
 from fixtures.fixture import AdminLogin
 
 
-class EmpSearch(AdminLogin):
-    def setUp(self) -> None:
-        super().setUp()
-        self.wait = WebDriverWait(self.browser, 5)
+class EmployeeInformationPage(object):
+    def __init__(self, browser: Chrome):
+        self.browser = browser
+        self.wait = WebDriverWait(browser, 5)
+
+    def search_employees_by_job_title(self, job_title: str):
+        Select(self.browser.find_element_by_id('empsearch_job_title')).select_by_visible_text(job_title)
+        self.browser.find_element_by_id('searchBtn').click()
         self.wait.until(EC.presence_of_element_located(
-            [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']
+            [By.XPATH, f'//select[@id="empsearch_job_title"]/option[@selected and text()="{job_title}"]']
         ))
+
+    def get_job_title_from_resultTable_row(self, row=1):
+        return self.browser.find_element_by_xpath(f'//*[@id="resultTable"]/tbody/tr[{row}]/td[5]').text
+
+    def get_number_of_rows_from_resultTable(self):
+        return len(self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr'))
+
+    def get_all_job_titles_from_resultTable(self):
+        return [el.text for el in self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')]
+
+
+class EmpSearch(AdminLogin):
 
     def test_search_by_job_title(self):
         # self.browser.find_element_by_id('empsearch_job_title').send_keys('SDET')
@@ -26,22 +42,23 @@ class EmpSearch(AdminLogin):
         # self.browser.find_element_by_xpath('//*[@id="empsearch_job_title"]/option[9]').click()
         #  OR
         # Example of webdriver select
-        Select(self.browser.find_element_by_id('empsearch_job_title')).select_by_visible_text('SDET')
-        self.browser.find_element_by_id('searchBtn').click()
+        emp_info = EmployeeInformationPage(self.browser)
+        emp_info.search_employees_by_job_title('SDET')
 
-        self.wait.until(EC.presence_of_element_located(
-            [By.CSS_SELECTOR, '#empsearch_job_title > option[selected][value="42"]']
-        ))
+        result = emp_info.get_job_title_from_resultTable_row()
 
-        # time.sleep(2)
-
-        result = self.browser.find_element_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]').text
         self.assertEqual('SDET', result)
 
-        list_of_web_elements_jtitles = self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')
+        number_of_rows = emp_info.get_number_of_rows_from_resultTable()
+        for i in range(number_of_rows):
+            jtitle = emp_info.get_job_title_from_resultTable_row(i+1)
+            self.assertEqual('SDET', jtitle)
 
-        for item in list_of_web_elements_jtitles:
-            self.assertEqual('SDET', item.text)
+        list_of_job_title_results = emp_info.get_all_job_titles_from_resultTable()
+        result_set = set(list_of_job_title_results)
+
+        self.assertEqual(1, len(result_set))
+        self.assertEqual('SDET', result_set.pop())
 
     def test_search_by_id(self):
         emp_id = '3250'

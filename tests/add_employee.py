@@ -2,14 +2,13 @@ import unittest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
 
 from fixtures.fixture import BaseFixture
 
 
 class AddEmployee(BaseFixture):
     def test_add_employee_with_credentials(self):
-        wait = WebDriverWait(self.browser, 5)
+        wait = self.wait
         first = "Jane"
         last = "Doe"
 
