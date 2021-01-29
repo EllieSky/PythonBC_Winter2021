@@ -26,6 +26,7 @@ class OrangeHRMEmpAddEmployee(BaseFixture):
         user_name = (first_name + last_name).lower()
         new_password = "password"
         picture = "C:/Users/Denis/Dropbox/My PC (DESKTOP-KJ79GMA)/Documents/Silver Auto Python Bootcamp/upload files/test.jpg"
+        business_card = "C:/Users/Denis/Dropbox/My PC (DESKTOP-KJ79GMA)/Documents/Silver Auto Python Bootcamp/upload files/business-card-feature-1.jpg"
         expected_login_url = "http://hrm-online.portnov.com/symfony/web/index.php/auth/login"
 
         # Wait provided by Ellie
@@ -58,12 +59,41 @@ class OrangeHRMEmpAddEmployee(BaseFixture):
         driver.find_element_by_id("btnSave").click()
 
 
+
         # Making sure Personal Details is displayed
 
         wait.until((EC.presence_of_element_located([By.XPATH, "//h1[contains(text(),'Personal Details')]"])))
+        driver.find_element_by_id("btnSave").click()
+        #  Updating Persona Details info
+
+        driver.find_element_by_id("personal_txtLicenNo").send_keys("D363636")
+        driver.find_element_by_id("personal_optGender_1").click()
+        driver.find_element_by_xpath("//*/option[147]").click()
+        driver.find_element_by_id("personal_chkSmokeFlag").click()
+        driver.find_element_by_id("btnSave").click()
+        driver.find_element_by_link_text("Job").click()
+        wait.until(EC.presence_of_element_located([By.ID, "btnTerminateEmployement"]))
+        driver.find_element_by_id("btnSave").click()
+
+        # Navigating to Job section
+
+        wait.until(EC.element_to_be_clickable([By.ID, "job_job_title"]))
+        driver.find_element_by_css_selector("#job_job_title > option:nth-child(8)").click()
+        driver.find_element_by_css_selector("#job_emp_status > option:nth-child(2)").click()
+        driver.find_element_by_id("job_joined_date").clear()
+        driver.find_element_by_id("job_joined_date").send_keys("10-05-2020")
+        driver.find_element_by_id("job_contract_start_date").clear()
+        driver.find_element_by_id("job_contract_start_date").send_keys("12-15-2020")
+        upload_contacts = driver.find_element_by_id("job_contract_file")
+        upload_contacts.send_keys(business_card)
+        driver.find_element_by_id("btnSave").click()
+
+        # Waiting to confirm that file was uploaded
+
+        wait.until(EC.presence_of_element_located([By.LINK_TEXT, "business-card-feature-1.jpg"]))
         driver.find_element_by_id("welcome").click()
 
-        # This is a wait for the logout overlay to be visible
+        #This is a wait for the logout overlay to be visible
 
         wait.until(EC.visibility_of_element_located([By.XPATH, "//a[contains(text(),'Logout')]"]))
         driver.find_element_by_xpath("//a[contains(text(),'Logout')]").click()
