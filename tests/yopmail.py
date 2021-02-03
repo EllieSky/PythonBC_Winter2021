@@ -30,7 +30,10 @@ class Yopmail(unittest.TestCase):
         self.write_to_file(self._testMethodName + '2', response2.text)
 
         self.assertIn('YOPmail - Inbox', response2.text)
-        # self.assertIn('tree@yopmail.com'.encode('utf-8'), response2.text)
+
+        # '&#64;' is the Alt Key Code for the '@' character
+        # Unfortunately there is not easy decoding for it  :(
+        self.assertIn('tree&#64;yopmail.com'.encode('utf-8'), response2.text)
 
 
 
