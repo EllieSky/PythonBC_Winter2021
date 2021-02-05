@@ -13,10 +13,15 @@ class BasicLogin(BaseFixture):
         browser = self.browser
         url = browser.current_url
         self.login_page.login()
-        wait = WebDriverWait(browser, 15)
 
-        wait.until(expected_conditions.url_changes(url))
-        wait.until(expected_conditions.presence_of_element_located([By.ID, "welcome"]))
+        # block below refactored after wait and lon_wait were added to fixture.py
+        # wait = WebDriverWait(browser, 15)
+        # wait.until(expected_conditions.url_changes(url))
+        # wait.until(expected_conditions.presence_of_element_located([By.ID, "welcome"]))
+        self.long_wait.until(expected_conditions.url_changes(url))
+        self.wait.until(expected_conditions.presence_of_element_located([By.ID, "welcome"]))
+
+
         # assert success
         self.assertTrue(browser.current_url.endswith('/pim/viewEmployeeList'))
         welcome_message = browser.find_element_by_id('welcome').text

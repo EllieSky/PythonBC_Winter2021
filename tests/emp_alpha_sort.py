@@ -10,11 +10,9 @@ from fixtures.fixture import AdminLogin
 
 class EmpSearch(AdminLogin):
     def test_first_middle_sort(self):
-        self.wait = WebDriverWait(self.browser, 5)
-        self.wait.until(
-            EC.presence_of_element_located(
-                [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']
-            ))
+        # next 2 lines added into fixture_py
+        # self.wait = WebDriverWait(self.browser, 5)
+        # self.wait.until(EC.presence_of_element_located([By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']))
         self.wait.until(EC.presence_of_element_located([By.LINK_TEXT, 'First (& Middle) Name'])).click()
         self.wait.until(EC.url_contains('sortField=firstMiddleName&sortOrder=ASC'))
 

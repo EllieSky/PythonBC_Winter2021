@@ -9,3 +9,4 @@ urllib3==1.26.2
 
 
 #Natasha having fun
+requests~=2.25.1

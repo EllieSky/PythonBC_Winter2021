@@ -37,7 +37,8 @@ class AddEmployee(BaseFixture):
     #     self.browser.find_element_by_id("btnLogin").click()
 
     def test_add_employee_with_credentials(self):
-        wait = WebDriverWait(self.browser, 5)
+        # wait = WebDriverWait(self.browser, 5)
+        wait = self.wait
         first = "Jane"
         last = "Doe"
 
