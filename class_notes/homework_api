@@ -1,0 +1,15 @@
+Part 1:
+Using your browser, determine how to create a GET request for the following URL:
+http://books.foothill.edu/postList
+
+From the resulting response extract the cookie '__RequestVerificationToken' and store the value
+Hint: resp1.cookies.get('__RequestVerificationToken')
+
+Next, using your browser determine what type of request is user to perform a book search by Author.
+Also note the data being sent as part of the request
+
+Hint: one of the required data items is '__RequestVerificationToken' and the value you stored earlier
+
+Create a test for the requests you generated in the above steps and add assertions as needed.
+
+Hint: Search by Author: MOORE

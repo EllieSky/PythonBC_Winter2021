@@ -36,6 +36,13 @@ class Yopmail(unittest.TestCase):
         self.assertIn('tree&#64;yopmail.com'.encode('utf-8'), response2.text)
 
 
+    def test_foothill(self):
+        resp1 = requests.get('http://books.foothill.edu/postList')
+        token = resp1.cookies.get('__RequestVerificationToken')
+        data = f'__RequestVerificationToken={token}&ClassifiedsName=Owl+Marketplace&AllowPostEditing=True&BookAuthor=BUTLERselectedCategory=0&submitButton=Search+Posts&selectedSort=0&CommentID=0&DeleteID=0&AbuseID=0&UpdateID=0&UpdatePrice=0&UpdateCategory=0'
+        resp = requests.post('http://books.foothill.edu/postList',
+                      headers={'Content-Type': 'application/x-www-form-urlencoded'}, data=data)
+        self.write_to_file(self._testMethodName + '3', resp.text)
 
 
     def write_to_file(self, file_name, data):
