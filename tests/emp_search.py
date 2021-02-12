@@ -4,7 +4,7 @@ import unittest
 from selenium.webdriver.common.keys import Keys
 
 from fixtures.fixture import AdminLogin
-from pages.employee_info import EmployeeInformationPage, EmployeeInfoType as Info
+from pages.employee_info import EmployeeInformationPage
 
 
 class EmpSearch(AdminLogin):

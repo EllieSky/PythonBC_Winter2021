@@ -1,24 +1,28 @@
-import unittest
 import os
+import unittest
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.login import LoginPage
-from tests import CHROME_PATH, PROJ_PATH
+from tests import CHROME_PATH, PROJ_PATH, DOMAIN, DEFAULT_WAIT, LONG_WAIT
 
 
 class BaseFixture(unittest.TestCase):
     def setUp(self) -> None:
         # browser session
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
-        browser.get('http://hrm-online.portnov.com/')
+
         self.browser = browser
-        self.wait = WebDriverWait(self.browser, 5)
-        self.long_wait = WebDriverWait(self.browser, 15)
+        self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
+        self.long_wait = WebDriverWait(self.browser, LONG_WAIT)
         self.login_page = LoginPage(browser)
+
+        # browser.get(f'http://{DOMAIN}')
+        # OR
+        self.login_page.go_to_page()
 
     def tearDown(self) -> None:
         if self._outcome.errors[1][1]:

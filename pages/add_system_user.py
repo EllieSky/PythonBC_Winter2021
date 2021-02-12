@@ -1,12 +1,14 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+
+from base.base_page import BasePage
 
 
-class AddSystemUserPage(object):
+class AddSystemUserPage(BasePage):
     def __init__(self, browser):
-        self.browser = browser
-        self.wait = WebDriverWait(browser, 5)
+        super().__init__(browser)
+        self.page_url = '/admin/saveSystemUser'
+        self.page_header = 'Add User'
 
     def fill_out_user_form(self, emp_name=None, username=None, password=None, repeat_password=None):
         self.wait.until(EC.presence_of_element_located(

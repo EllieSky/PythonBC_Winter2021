@@ -1,21 +1,18 @@
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
+
+from base.base_page import BasePage
 
 
-class SystemUsersPage(object):
+class SystemUsersPage(BasePage):
     def __init__(self, browser):
-        self.browser = browser
-        self.wait = WebDriverWait(browser, 5)
+        super().__init__(browser)
+        self.page_url = '/admin/viewSystemUsers'
+        self.page_header = 'System Users'
 
     def add(self):
         self.browser.find_element_by_id('btnAdd').click()
         self.wait.until(EC.url_contains('/admin/saveSystemUser'))
-
-    def wait_for_page_to_load(self):
-        self.wait.until(EC.url_contains('/admin/viewSystemUsers'))
-        self.wait.until(EC.presence_of_element_located((By.ID, 'systemUser-information')))
 
     def is_username_listed(self, username):
         result = self.browser.find_elements_by_link_text(username)

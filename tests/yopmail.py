@@ -1,5 +1,6 @@
 import os
 import unittest
+
 import requests
 
 from tests import PROJ_PATH
