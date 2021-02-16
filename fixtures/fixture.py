@@ -15,6 +15,7 @@ class BaseFixture(unittest.TestCase):
         # browser session
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
         browser.get("http://hrm-online.portnov.com/")
+
         # Take  local browser and store it into SELF
         self.browser = browser
         self.wait = WebDriverWait(self.browser, 5)
