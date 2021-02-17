@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.login import LoginPage
-from tests import CHROME_PATH, PROJ_PATH, DOMAIN, DEFAULT_WAIT, LONG_WAIT
+from tests import CHROME_PATH, PROJ_PATH, DEFAULT_WAIT, LONG_WAIT
 
 
 class BaseFixture(unittest.TestCase):

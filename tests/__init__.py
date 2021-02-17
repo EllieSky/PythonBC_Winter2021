@@ -1,5 +1,4 @@
 import os
-
 from webdriver_manager.chrome import ChromeDriverManager
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
