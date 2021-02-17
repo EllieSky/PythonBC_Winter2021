@@ -1,10 +1,13 @@
 import json
 import os
 import re
+import time
 import unittest
+import random
 
 import requests
 
+from api.api import Api
 from tests import PROJ_PATH
 
 
@@ -43,6 +46,24 @@ class HRM_API(unittest.TestCase):
 
         with open(f"{test_results_folder}/{file_name}.html", 'w', encoding="utf-8") as file:
             file.write(data)
+
+
+    def test_hrm_create_employee(self):
+        # emp_id = random.randint(10000, 99999)
+
+        emp_id = str(int(time.time() * 100))[-6::]
+
+        api = Api()
+        api.sign_in()
+        resp = api.add_employee(emp_id, "Billy", "Elliot", file=f'{PROJ_PATH}/empty.png')
+
+        self.write_to_file(self._testMethodName, resp.text)
+
+        self.assertIn('/pim/viewEmployee/empNumber', resp.url)
+
+        emp_number = resp.url.split('/')[-1]
+
+
 
 if __name__ == '__main__':
     unittest.main()
