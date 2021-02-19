@@ -1,3 +1,5 @@
+import csv
+import os
 import unittest
 
 from parameterized import parameterized
@@ -5,6 +7,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 
 from fixtures.fixture import BaseFixture
+from tests import PROJ_PATH
+
+
+def csv_auth_data():
+    with open(os.path.join(PROJ_PATH, 'data', 'auth.csv')) as file:
+        iter = csv.reader(file)
+        return list(map(tuple, iter))
 
 class BasicLogin(BaseFixture):
     @unittest.skip
@@ -22,13 +31,18 @@ class BasicLogin(BaseFixture):
 
         self.assertEqual('Welcome Admin', welcome_message)
 
-    @parameterized.expand([
-        ('empty_password', 'admin', None, '/auth/login', 'Password cannot be empty'),
-        ('empty_username', None, None, '/auth/login', 'Username cannot be empty'),
-        ('invalid_credentials', 'adminnn', 'passwordd', '/auth/validateCredentials', 'Invalid credentials')
-    ])
+    # @parameterized.expand([
+    #     ('empty_password', 'admin', None, '/auth/login', 'Password cannot be empty'),
+    #     ('empty_username', None, None, '/auth/login', 'Username cannot be empty'),
+    #     ('invalid_credentials', 'adminnn', 'passwordd', '/auth/validateCredentials', 'Invalid credentials')
+    # ])
+    @parameterized.expand(csv_auth_data())
     def test_invalid_login(self, test_name, username, password, partial_url, expected_error_msg):
         browser = self.browser
+        if username == 'None':
+            username = None
+        if password == 'None':
+            password = None
         self.login_page.login(username, password)
         error_message = browser.find_element_by_id('spanMessage').text
         self.assertTrue(browser.current_url.endswith(partial_url))

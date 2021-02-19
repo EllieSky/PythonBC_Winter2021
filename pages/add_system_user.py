@@ -10,6 +10,10 @@ class AddSystemUserPage(BasePage):
         self.page_url = '/admin/saveSystemUser'
         self.page_header = 'Add User'
 
+    def wait_for_page_to_load(self):
+        super().wait_for_page_to_load()
+        self.wait.until(EC.presence_of_element_located((By.ID, 'systemUser-information')))
+
     def fill_out_user_form(self, emp_name=None, username=None, password=None, repeat_password=None):
         self.wait.until(EC.presence_of_element_located(
             (By.ID, 'systemUser_employeeName_empName'))).send_keys(emp_name) if emp_name is not None else None

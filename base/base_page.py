@@ -12,7 +12,6 @@ class BasePage(Base):
 
     def wait_for_page_to_load(self):
         self.wait.until(EC.url_contains(self.page_url))
-        # self.wait.until(EC.presence_of_element_located((By.ID, 'systemUser-information')))
 
     def get_page_header(self):
         return self.browser.find_element_by_css_selector('.head>h1').text

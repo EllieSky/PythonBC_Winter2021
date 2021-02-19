@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 
 from base.base_page import BasePage
+from pages.add_employee import AddEmployeePage
 
 
 class EmployeeInfoType:
@@ -20,6 +21,13 @@ class EmployeeInformationPage(BasePage):
         super().__init__(browser)
         self.page_url = '/pim/viewEmployeeList'
         self.page_header = 'Employee Information'
+
+    def wait_for_page_to_load(self):
+        super().wait_for_page_to_load()
+        self.wait.until(
+            EC.presence_of_element_located(
+                [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']
+            ))
 
     def search_employees_by_job_title(self, job_title: str):
         Select(self.browser.find_element_by_id('empsearch_job_title')).select_by_visible_text(job_title)
@@ -49,5 +57,9 @@ class EmployeeInformationPage(BasePage):
 
     def get_all_job_titles_from_resultTable(self):
         return [el.text for el in self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')]
+
+    def add(self):
+        self.browser.find_element_by_id('btnAdd').click()
+        AddEmployeePage(self.browser).wait_for_page_to_load()
 
 

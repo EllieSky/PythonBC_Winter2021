@@ -1,61 +1,40 @@
 import unittest
 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+from faker import Faker
 
 from fixtures.fixture import BaseFixture
+from menues.user_menu import UserMenu
+from pages.add_employee import AddEmployeePage
+from pages.employee_info import EmployeeInformationPage
+from pages.personal_details import PersonalDetails
 
 
 class AddEmployee(BaseFixture):
     def test_add_employee_with_credentials(self):
-        wait = self.wait
-        first = "Jane"
-        last = "Doe"
+        f = Faker()
+        first = f.first_name()
+        last = f.last_name()
+        self.user_menu = UserMenu(self.browser)
+        self.pim_page = EmployeeInformationPage(self.browser)
+        self.add_emp_page = AddEmployeePage(self.browser)
 
         self.login_page.login()
-        wait.until(EC.url_contains('/pim/viewEmployeeList'))
-        wait.until(
-            EC.presence_of_element_located(
-                [By.CSS_SELECTOR, '#empsearch_employee_name_empName.inputFormatHint']
-            ))
-        self.browser.find_element_by_id('btnAdd').click()
-        wait.until(EC.url_contains('/pim/addEmployee'))
 
-        wait.until(
-            EC.presence_of_element_located([By.ID, 'lastName'])).send_keys(last)
-        wait.until(
-            EC.presence_of_element_located([By.ID, 'firstName'])).send_keys(first)
+        self.pim_page.wait_for_page_to_load()
+        self.pim_page.add()
 
-        emp_id = self.browser.find_element_by_id('employeeId').get_attribute('value')
+        emp_id = self.add_emp_page.get_employee_id()
+        self.add_emp_page.fill_out_employee_form(
+            first, last, None, None, (first, last, emp_id), 'password', 'password')
+        self.add_emp_page.save()
 
-        self.browser.find_element_by_id('chkLogin').click()
-        wait.until(EC.visibility_of_element_located(
-            [By.ID, 'user_name']
-        # )).send_keys("JaneDoe" + emp_id)
-        # )).send_keys(f"JaneDoe{emp_id}")
-        )).send_keys(first, last, emp_id)
+        self.personal_details = PersonalDetails(self.browser, emp_id)
+        self.personal_details.wait_for_page_to_load()
 
-        self.browser.find_element_by_id('user_password').send_keys('password')
-        self.browser.find_element_by_id('re_password').send_keys('password')
+        self.user_menu.logout()
 
-        self.browser.find_element_by_id('btnSave').click()
-
-        wait.until(EC.url_contains('/empNumber/' + emp_id))
-
-        self.browser.find_element_by_id("welcome").click()
-
-        wait.until(EC.visibility_of_element_located(
-            [By.LINK_TEXT, "Logout"]
-        )).click()
-
-        wait.until(EC.url_contains('/auth/login'))
-
-        # self.login(first + last + emp_id, 'password')
         self.login_page.login((first, last, emp_id))
-
-        welcome_message = wait.until(EC.presence_of_element_located(
-            [By.ID, 'welcome']
-        )).text
+        welcome_message = self.user_menu.get_welcome_message()
 
         self.assertEqual(f"Welcome {first}", welcome_message)
 

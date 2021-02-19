@@ -1,0 +1,3 @@
+empty_password,admin,None,/auth/login,Password cannot be empty
+empty_username,None,None,/auth/login,Username cannot be empty
+invalid_credentials,adminnn,passwordd,/auth/validateCredentials,Invalid credentials

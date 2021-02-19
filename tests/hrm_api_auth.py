@@ -3,7 +3,6 @@ import os
 import re
 import time
 import unittest
-import random
 
 import requests
 

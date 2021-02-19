@@ -3,7 +3,7 @@ import re
 import requests
 from requests_toolbelt import MultipartEncoder
 
-from tests import DEFAULT_ADMIN_PASSWORD, BASE_URL, PROJ_PATH
+from tests import DEFAULT_ADMIN_PASSWORD, BASE_URL
 
 
 class Api:
