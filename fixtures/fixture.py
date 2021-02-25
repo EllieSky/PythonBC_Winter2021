@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.login import LoginPage
-from tests import CHROME_PATH, PROJ_PATH, DEFAULT_WAIT, LONG_WAIT
+from tests import CHROME_PATH, PROJ_PATH, DEFAULT_WAIT, LONG_WAIT, OUTPUT_DIR
 
 
 class BaseFixture(unittest.TestCase):
@@ -26,7 +26,7 @@ class BaseFixture(unittest.TestCase):
 
     def tearDown(self) -> None:
         if self._outcome.errors[1][1]:
-            test_results_folder = f"{PROJ_PATH}/screenshots"
+            test_results_folder = OUTPUT_DIR
             if not os.path.exists(test_results_folder):
                 os.mkdir(test_results_folder)
             test_name = self._testMethodName

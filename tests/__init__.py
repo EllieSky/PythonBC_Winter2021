@@ -5,6 +5,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJ_PATH = os.path.dirname(TESTS_DIR)
+OUTPUT_DIR = os.path.join(PROJ_PATH, 'screenshots')
 
 BROWSER = 'chrome' if not os.environ.get('BROWSER') else os.environ.get('BROWSER').lower()
 TEST_ENV = 'default' if not os.environ.get('TEST_ENV') else os.environ.get('TEST_ENV').lower()
