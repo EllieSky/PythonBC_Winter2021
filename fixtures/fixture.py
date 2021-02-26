@@ -19,7 +19,8 @@ class BaseFixture(unittest.TestCase):
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--disable-gpu")
             browser = webdriver.Chrome(executable_path=CHROME_PATH, options=chrome_options)
-        browser = webdriver.Chrome(executable_path=CHROME_PATH)
+        else:
+            browser = webdriver.Chrome(executable_path=CHROME_PATH)
 
         self.browser = browser
         self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
