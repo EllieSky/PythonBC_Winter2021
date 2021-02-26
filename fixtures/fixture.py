@@ -7,12 +7,18 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.login import LoginPage
-from tests import CHROME_PATH, PROJ_PATH, DEFAULT_WAIT, LONG_WAIT, OUTPUT_DIR
+from tests import CHROME_PATH, DEFAULT_WAIT, LONG_WAIT, OUTPUT_DIR
 
 
 class BaseFixture(unittest.TestCase):
     def setUp(self) -> None:
         # browser session
+
+        if os.environ.get('JOB_NAME'):
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--disable-gpu")
+            browser = webdriver.Chrome(executable_path=CHROME_PATH, options=chrome_options)
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
 
         self.browser = browser
