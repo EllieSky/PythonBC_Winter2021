@@ -5,7 +5,7 @@ from api.api import Api
 from fixtures.fixture import AdminLogin
 from menues.main_menu import MainMenu
 from pages.add_system_user import AddSystemUserPage
-from pages.system_users import SystemUsersPage
+from pages.system_users import SystemUsersPage, UserInfoType
 
 
 class AdminPageCreateUser(AdminLogin):
@@ -57,6 +57,10 @@ class AdminPageCreateUser(AdminLogin):
         # Same WebElement as above
         # self.assertEqual('ESS', self.browser.find_element_by_xpath("//a[text()='caleb']/following::td[1]").text)
         # self.assertTrue(self.browser.find_elements_by_xpath('//td[text()="Charles Marsh"]'))
+
+        # example of reusing Table Object between different pages
+        # sys_users.sort_by_column(sys_users.TABLE_COLUMN.USERNAME)
+        # sys_users.get_info_from_resultTable_row(sys_users.TABLE_COLUMN.USER_ROLE, 2)
 
     def tearDown(self) -> None:
         if hasattr(self, 'user_id'):

@@ -5,10 +5,18 @@ from base.base_page import BasePage
 
 
 class AddEmployeePage(BasePage):
-    def __init__(self, browser):
-        super().__init__(browser)
-        self.page_url = '/pim/addEmployee'
-        self.page_header = 'Add Employee'
+    # def __init__(self, browser):
+    #     super().__init__(browser)
+    #     self.page_url = '/pim/addEmployee'
+    #     self.page_header = 'Add Employee'
+
+    @property
+    def page_url(self):
+        return '/pim/addEmployee'
+
+    @property
+    def page_header(self):
+        return 'Add Employee'
 
     def fill_out_employee_form(self, first_name=None, last_name=None, emp_id=None, middle_name=None,
                                username=None, password=None, repeat_password=None):

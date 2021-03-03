@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 
 from base.base_page import BasePage
+from blocks.table import Table
 from pages.add_employee import AddEmployeePage
 
 
@@ -16,11 +17,22 @@ class EmployeeInfoType:
     SUPERVISOR = 8
 
 
-class EmployeeInformationPage(BasePage):
-    def __init__(self, browser):
-        super().__init__(browser)
-        self.page_url = '/pim/viewEmployeeList'
-        self.page_header = 'Employee Information'
+class EmployeeInformationPage(BasePage, Table):
+    # def __init__(self, browser):
+    #     super().__init__(browser)
+    #     self.page_url = '/pim/viewEmployeeList'
+    #     self.page_header = 'Employee Information'
+    def add(self):
+        super().add()
+        AddEmployeePage(self.browser).wait_for_page_to_load()
+
+    @property
+    def page_url(self):
+        return '/pim/viewEmployeeList'
+
+    @property
+    def page_header(self):
+        return 'Employee Information'
 
     def wait_for_page_to_load(self):
         super().wait_for_page_to_load()
@@ -49,17 +61,5 @@ class EmployeeInformationPage(BasePage):
     def get_employee_id_from_resultTable_row(self, row=1):
         return self.get_info_from_resultTable_row(EmployeeInfoType.ID, row)
 
-    def get_info_from_resultTable_row(self, info, row=1):
-        return self.browser.find_element_by_xpath(f'//*[@id="resultTable"]/tbody/tr[{row}]/td[{info}]').text
-
-    def get_number_of_rows_from_resultTable(self):
-        return len(self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr'))
-
     def get_all_job_titles_from_resultTable(self):
         return [el.text for el in self.browser.find_elements_by_xpath('//*[@id="resultTable"]/tbody/tr/td[5]')]
-
-    def add(self):
-        self.browser.find_element_by_id('btnAdd').click()
-        AddEmployeePage(self.browser).wait_for_page_to_load()
-
-

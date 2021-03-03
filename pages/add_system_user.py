@@ -5,10 +5,18 @@ from base.base_page import BasePage
 
 
 class AddSystemUserPage(BasePage):
-    def __init__(self, browser):
-        super().__init__(browser)
-        self.page_url = '/admin/saveSystemUser'
-        self.page_header = 'Add User'
+    # def __init__(self, browser):
+    #     super().__init__(browser)
+    #     self.page_url = '/admin/saveSystemUser'
+    #     self.page_header = 'Add User'
+
+    @property
+    def page_url(self):
+        return '/admin/saveSystemUser'
+
+    @property
+    def page_header(self):
+        return 'Add User'
 
     def wait_for_page_to_load(self):
         super().wait_for_page_to_load()

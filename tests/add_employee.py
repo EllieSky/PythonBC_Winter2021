@@ -14,9 +14,6 @@ class AddEmployee(BaseFixture):
         f = Faker()
         first = f.first_name()
         last = f.last_name()
-        self.user_menu = UserMenu(self.browser)
-        self.pim_page = EmployeeInformationPage(self.browser)
-        self.add_emp_page = AddEmployeePage(self.browser)
 
         self.login_page.login()
 

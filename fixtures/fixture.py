@@ -6,6 +6,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+from menues.user_menu import UserMenu
+from pages.add_employee import AddEmployeePage
+from pages.employee_info import EmployeeInformationPage
 from pages.login import LoginPage
 from tests import CHROME_PATH, DEFAULT_WAIT, LONG_WAIT, OUTPUT_DIR
 
@@ -27,6 +30,11 @@ class BaseFixture(unittest.TestCase):
         self.long_wait = WebDriverWait(self.browser, LONG_WAIT)
         self.login_page = LoginPage(browser)
 
+        # optional design choice:
+        self.user_menu = UserMenu(self.browser)
+        self.pim_page = EmployeeInformationPage(self.browser)
+        self.add_emp_page = AddEmployeePage(self.browser)
+
         # browser.get(f'http://{DOMAIN}')
         # OR
         self.login_page.go_to_page()
@@ -37,6 +45,7 @@ class BaseFixture(unittest.TestCase):
             if not os.path.exists(test_results_folder):
                 os.mkdir(test_results_folder)
             test_name = self._testMethodName
+
             self.browser.save_screenshot(f"{test_results_folder}/{test_name}.png")
 
             file = open(f"{test_results_folder}/{test_name}.html", 'w', encoding="utf-8")

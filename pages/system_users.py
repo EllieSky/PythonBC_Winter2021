@@ -2,17 +2,33 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 
 from base.base_page import BasePage
+from blocks.table import Table
 
 
-class SystemUsersPage(BasePage):
-    def __init__(self, browser):
-        super().__init__(browser)
-        self.page_url = '/admin/viewSystemUsers'
-        self.page_header = 'System Users'
+class UserInfoType:
+    USERNAME = 2
+    USER_ROLE = 3
+    EMPLOYEE_NAME = 4
+    STATUS = 5
+
+
+class SystemUsersPage(BasePage, Table):
+
+    TABLE_COLUMN = UserInfoType
+    # def __init__(self, browser):
+    #     super().__init__(browser)
+    #     self.page_url = '/admin/viewSystemUsers'
+    #     self.page_header = 'System Users'
 
     def add(self):
-        self.browser.find_element_by_id('btnAdd').click()
+        super().add()
         self.wait.until(EC.url_contains('/admin/saveSystemUser'))
+
+    @property
+    def page_url(self): return '/admin/viewSystemUsers'
+
+    @property
+    def page_header(self): return 'System Users'
 
     def is_username_listed(self, username):
         result = self.browser.find_elements_by_link_text(username)
