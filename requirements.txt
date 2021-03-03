@@ -5,3 +5,4 @@ Faker>=6.5.0
 unittest-xml-reporting>=3.0.4
 parameterized>=0.8.1
 nose2>=0.10.0
+requests_toolbelt>=0.9.1

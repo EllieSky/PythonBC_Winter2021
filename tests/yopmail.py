@@ -34,7 +34,7 @@ class Yopmail(unittest.TestCase):
 
         # '&#64;' is the Alt Key Code for the '@' character
         # Unfortunately there is not easy decoding for it  :(
-        self.assertIn('tree&#64;yopmail.com'.encode('utf-8'), response2.text)
+        self.assertIn('tree&#64;yopmail.com', response2.text)
 
 
     def test_foothill(self):

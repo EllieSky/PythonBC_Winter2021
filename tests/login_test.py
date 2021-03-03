@@ -16,7 +16,6 @@ def csv_auth_data():
         return list(map(tuple, iter))
 
 class BasicLogin(BaseFixture):
-    @unittest.skip
     def test_valid_login(self):
         # Take browser out of SELF into local browser variable
         browser = self.browser

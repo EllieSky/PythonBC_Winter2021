@@ -32,7 +32,7 @@ class TestTimeConverter(unittest.TestCase):
         actual_seconds = self.convert_into_seconds(1, -1, 0)
         self.assertEqual(None, actual_seconds)
 
-    def convert_into_seconds(hours=0, minutes=0, seconds=0):
+    def convert_into_seconds(self, hours=0, minutes=0, seconds=0):
         if seconds < 0 or minutes < 0 or hours < 0:
             print("Negative input for time units is not allowed, please use a positive number")
         else:

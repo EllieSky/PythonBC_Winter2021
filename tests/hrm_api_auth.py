@@ -58,7 +58,7 @@ class HRM_API(unittest.TestCase):
 
         self.write_to_file(self._testMethodName, resp.text)
 
-        self.assertIn('/pim/viewEmployee/empNumber', resp.url)
+        self.assertIn('/pim/viewPersonalDetails/empNumber/', resp.url)
 
         emp_number = resp.url.split('/')[-1]
 

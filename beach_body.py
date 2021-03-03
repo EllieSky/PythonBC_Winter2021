@@ -7,6 +7,8 @@ from tests import CHROME_PATH
 
 
 class BeachBody(unittest.TestCase):
+    # Website is no longer active
+    @unittest.expectedFailure
     def test_get_started_button(self):
         browser = webdriver.Chrome(executable_path=CHROME_PATH)
         browser.get('https://www.beachbody.com/')

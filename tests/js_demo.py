@@ -34,7 +34,7 @@ class JS_Demo(BaseFixture):
         windows = self.browser.window_handles
         self.browser.switch_to.window(windows[-1])
 
-        self.assertEqual(page_title_of_random_search_result, self.browser.title)
+        self.assertIn(self.browser.title, page_title_of_random_search_result)
 
 
 if __name__ == '__main__':
